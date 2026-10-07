@@ -6,27 +6,27 @@
     {
       "key": "name1",
       "prompt": "What's a name of a person?",
-      "options": ["Gideon", "Harleigh", "Juju", "Cammie", "Emma"]
+      "type": "personName"
     },
     {
       "key": "name2",
       "prompt": "What's a name of another person?",
-      "options": ["Gideon", "Harleigh", "Juju", "Cammie", "Emma"]
+      "type": "personName"
     },
     {
       "key": "container",
       "prompt": "What is a container?",
-      "options": ["bucket", "pail", "jar", "bottle", "basket", "box"]
+      "type": "container"
     },
     {
       "key": "substance",
-      "prompt": "What is inside the container?",
-      "options": ["water", "milk", "tacos", "pizza"]
+      "prompt": "What are you carrying?",
+      "type": "substance"
     },
     {
       "key": "bodyPart",
       "prompt": "What is a body part?",
-      "options": ["arm", "leg", "head", "foot", "hand"]
+      "type": "bodyPart"
     }
   ],
   "template": "{name1} and {name2} went up the hill to fetch a {container} of {substance}.  {name1} fell down and broke their {bodyPart}, and {name2} came tumbling after."

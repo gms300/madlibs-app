@@ -1,24 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import stories from './stories';
+import typeOptions from './stories/TypeOptions.json';
 
 function App() {
   const [selectedStory, setSelectedStory] = useState(null);
   const [showStorySelection, setShowStorySelection] = useState(true);
-  const [showIntro, setShowIntro] = useState(false);
   const [currentPage, setCurrentPage] = useState(0);
   const [showStory, setShowStory] = useState(false);
   const [words, setWords] = useState({});
 
-  useEffect(() => {
-    if (stories.length === 1) {
-      selectStory(stories[0]);
-    }
-  }, []);
-
   const selectStory = (story) => {
     setSelectedStory(story);
     setShowStorySelection(false);
-    setShowIntro(true);
     const initialWords = {};
     story.fields.forEach(field => {
       initialWords[field.key] = '';
@@ -45,10 +38,7 @@ function App() {
   };
 
   const handleNext = () => {
-    if (showIntro) {
-      setShowIntro(false);
-      setCurrentPage(0);
-    } else if (currentPage < fields.length - 1) {
+    if (currentPage < fields.length - 1) {
       setCurrentPage(currentPage + 1);
     } else {
       setShowStory(true);
@@ -62,7 +52,6 @@ function App() {
   };
 
   const handlePlayAgain = () => {
-    setShowIntro(true);
     setCurrentPage(0);
     setShowStory(false);
     const initialWords = {};
@@ -75,7 +64,7 @@ function App() {
   if (showStorySelection) {
     return (
       <div style={{
-        minHeight: '100vh',
+        minHeight: '100dvh',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
@@ -86,7 +75,7 @@ function App() {
         <div style={{
           background: 'white',
           borderRadius: '20px',
-          padding: '2rem',
+          padding: 'clamp(1rem, 5vw, 2rem)',
           maxWidth: '500px',
           width: '100%',
           boxShadow: '0 10px 40px rgba(0, 0, 0, 0.2)',
@@ -153,7 +142,7 @@ function App() {
   if (showStory) {
     return (
       <div style={{
-        minHeight: '100vh',
+        minHeight: '100dvh',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
@@ -164,25 +153,25 @@ function App() {
         <div style={{
           background: 'white',
           borderRadius: '20px',
-          padding: '2rem',
+          padding: 'clamp(1rem, 5vw, 2rem)',
           maxWidth: '500px',
           width: '100%',
           boxShadow: '0 10px 40px rgba(0, 0, 0, 0.2)',
           textAlign: 'center'
         }}>
           <h1 style={{
-            fontSize: '36px',
+            fontSize: 'clamp(28px, 4.5vh, 36px)',
             fontWeight: 700,
             marginTop: 0,
-            marginBottom: '1.5rem',
+            marginBottom: '0.75rem',
             color: '#333'
           }}>✨ Your Story! ✨</h1>
 
           <p style={{
-            fontSize: '24px',
-            lineHeight: '1.8',
+            fontSize: 'clamp(18px, 3vh, 24px)',
+            lineHeight: '1.45',
             color: '#333',
-            marginBottom: '2rem',
+            marginBottom: '1rem',
             fontFamily: 'Georgia, serif'
           }}>
             {story}
@@ -192,11 +181,11 @@ function App() {
             onClick={handlePlayAgain}
             style={{
               width: '100%',
-              padding: '20px 16px',
+              padding: 'clamp(10px, 2vh, 20px) 12px',
               backgroundColor: '#667eea',
               border: 'none',
               borderRadius: '15px',
-              fontSize: '24px',
+              fontSize: 'clamp(18px, 3vh, 24px)',
               fontWeight: 700,
               cursor: 'pointer',
               color: 'white',
@@ -222,11 +211,11 @@ function App() {
             }}
             style={{
               width: '100%',
-              padding: '20px 16px',
+              padding: 'clamp(10px, 2vh, 20px) 12px',
               backgroundColor: '#764ba2',
               border: 'none',
               borderRadius: '15px',
-              fontSize: '24px',
+              fontSize: 'clamp(18px, 3vh, 24px)',
               fontWeight: 700,
               cursor: 'pointer',
               color: 'white',
@@ -248,85 +237,12 @@ function App() {
     );
   }
 
-  if (showIntro && !showStory) {
-    return (
-      <div style={{
-        minHeight: '100vh',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        padding: '1rem',
-        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
-      }}>
-        <div style={{
-          background: 'white',
-          borderRadius: '20px',
-          padding: '2rem',
-          maxWidth: '500px',
-          width: '100%',
-          boxShadow: '0 10px 40px rgba(0, 0, 0, 0.2)',
-          textAlign: 'center'
-        }}>
-          <h1 style={{
-            fontSize: '48px',
-            fontWeight: 700,
-            marginTop: 0,
-            marginBottom: '0.5rem',
-            color: '#333'
-          }}>🎪 MadLibs! 🎪</h1>
-          <p style={{
-            fontSize: '20px',
-            color: '#666',
-            marginTop: 0,
-            marginBottom: '2rem'
-          }}>{selectedStory?.title}</p>
-
-          <p style={{
-            fontSize: '18px',
-            color: '#333',
-            marginBottom: '2rem',
-            lineHeight: '1.6'
-          }}>
-            Get ready to create the silliest, funniest story ever! Pick one word at a time and see what happens.
-          </p>
-
-          <button
-            onClick={handleNext}
-            style={{
-              width: '100%',
-              padding: '20px 16px',
-              backgroundColor: '#667eea',
-              border: 'none',
-              borderRadius: '15px',
-              fontSize: '24px',
-              fontWeight: 700,
-              cursor: 'pointer',
-              color: 'white',
-              transition: 'transform 0.2s, box-shadow 0.2s'
-            }}
-            onMouseEnter={(e) => {
-              e.target.style.transform = 'scale(1.05)';
-              e.target.style.boxShadow = '0 5px 20px rgba(102, 126, 234, 0.4)';
-            }}
-            onMouseLeave={(e) => {
-              e.target.style.transform = 'scale(1)';
-              e.target.style.boxShadow = 'none';
-            }}
-          >
-            Let's Go! →
-          </button>
-        </div>
-      </div>
-    );
-  }
-
   const field = fields[currentPage];
   const currentAnswer = words[field.key];
 
   return (
     <div style={{
-      height: '100vh',
+      height: '100dvh',
       display: 'flex',
       flexDirection: 'column',
       background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
@@ -377,7 +293,7 @@ function App() {
           gridTemplateColumns: '1fr 1fr',
           gap: '12px'
         }}>
-          {field.options.map(option => (
+          {typeOptions[field.type].map(option => (
             <button
               key={option}
               onClick={() => handleSelectAnswer(option)}

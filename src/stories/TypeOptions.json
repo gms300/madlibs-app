@@ -1,0 +1,9 @@
+{
+  "personName": ["Gideon", "Harleigh", "Juju", "Cami", "Emma"],
+  "container": ["bucket", "pail", "jar", "bottle", "basket", "box"],
+  "substance": ["water", "milk", "tacos", "pizza"],
+  "bodyPart": ["arm", "leg", "head", "foot", "hand"],
+  "verb-present": ["running", "jumping", "swimming", "flying", "crawling"],
+  "adjective": ["happy", "sad", "angry", "excited", "bored"],
+  "animal": ["lion", "tiger", "bear", "elephant", "giraffe"]
+}

@@ -1,0 +1,28 @@
+{
+  "id": "trip-to-the-zoo",
+  "title": "Trip to the Zoo",
+  "description": "A fun adventure to the zoo",
+  "fields": [
+    {
+      "key": "name1",
+      "prompt": "What's a name of a person?",
+      "type": "personName"
+    },
+    {
+      "key": "animal1",
+      "prompt": "What's the name of an animal?",
+      "type": "animal"
+    },
+    {
+      "key": "adjective1",
+      "prompt": "What's an adjective?",
+      "type": "adjective"
+    },
+    {
+      "key": "verb1",
+      "prompt": "What's a present tense verb?",
+      "type": "verb-present"
+    }
+  ],
+  "template": "{name1} took a trip to the zoo.  They saw many animals and had a great time.  The {adjective1} {animal1} was {verb1}."
+}
