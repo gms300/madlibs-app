@@ -1,0 +1,19 @@
+{
+  "id": "underwater-party",
+  "title": "The Underwater Birthday Party",
+  "description": "Celebrate a birthday at the bottom of the ocean",
+  "fields": [
+    { "key": "name", "prompt": "What is the birthday kid's name?", "type": "personName" },
+    { "key": "number", "prompt": "How old are they turning?", "type": "number" },
+    { "key": "seacreature", "prompt": "What is a sea creature?", "type": "seaCreature" },
+    { "key": "food", "prompt": "What is a food?", "type": "food" },
+    { "key": "adj1", "prompt": "What is an adjective?", "type": "adjective" },
+    { "key": "verbing", "prompt": "What is a verb ending in -ing?", "type": "verb-ing" },
+    { "key": "noise", "prompt": "What is a silly noise?", "type": "noise" },
+    { "key": "pluralnoun", "prompt": "What is a plural noun?", "type": "pluralNoun" },
+    { "key": "bodypart", "prompt": "What is a body part?", "type": "bodyPart" },
+    { "key": "gift", "prompt": "What is a birthday present?", "type": "gift" },
+    { "key": "exclaim", "prompt": "What would you yell when excited?", "type": "exclamation" }
+  ],
+  "template": "For {name}'s {number}th birthday, there was only one place to have the party: the bottom of the ocean!\n\nEveryone put on their {adj1} swim goggles and dove in. The first guest to arrive was a {seacreature} wearing a party hat on its {bodypart}. \"Happy birthday!\" it blubbed. Bubbles went everywhere.\n\nThe cake was a giant tower of {food}, and the candles were lit by an electric eel who was very proud of his job. When {name} blew them out, the whole ocean shouted, \"{exclaim}\"\n\nThen came the games. First was Pin the Tail on the {seacreature}, which the {seacreature} did not enjoy at all. Next was a race, where everyone had to swim while {verbing}. A crab won, even though he was going sideways and also {verbing}.\n\nA band of dolphins played music on instruments made of seashells. Every time they hit a high note, it went {noise}, and a school of fish fainted from the sound.\n\nFinally, it was time for presents. {name} got a shiny {gift} from the {seacreature}, a thousand {pluralnoun} from the crabs, and a hug from a very squishy sea star.\n\n\"This is the best birthday ever,\" said {name}.\n\nThen everyone sat in the sand, ate {food}, and floated home with full tummies, covered in glitter and happy bubbles."
+}

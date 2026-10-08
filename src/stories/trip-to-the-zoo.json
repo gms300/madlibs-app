@@ -5,7 +5,7 @@
   "fields": [
     {
       "key": "name1",
-      "prompt": "What's a name of a person?",
+      "prompt": "What is a person's name?",
       "type": "personName"
     },
     {
@@ -21,7 +21,7 @@
     {
       "key": "verb1",
       "prompt": "What's a present tense verb?",
-      "type": "verb-present"
+      "type": "verb-ing"
     }
   ],
   "template": "{name1} took a trip to the zoo.  They saw many animals and had a great time.  The {adjective1} {animal1} was {verb1}."

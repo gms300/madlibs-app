@@ -1,0 +1,19 @@
+{
+  "id": "moon-cheese",
+  "title": "Mission to the Moon Cheese Factory",
+  "description": "Discover the surprising secret behind the moon",
+  "fields": [
+    { "key": "name", "prompt": "What is your name?", "type": "personName" },
+    { "key": "sidekick", "prompt": "What is your sidekick's name?", "type": "personName" },
+    { "key": "adj1", "prompt": "What is an adjective?", "type": "adjective" },
+    { "key": "adj2", "prompt": "What is another adjective?", "type": "adjective" },
+    { "key": "food", "prompt": "What is a food?", "type": "food" },
+    { "key": "vehicle", "prompt": "What is a vehicle?", "type": "vehicle" },
+    { "key": "noise", "prompt": "What is a silly noise?", "type": "noise" },
+    { "key": "verb", "prompt": "What is a verb?", "type": "verb" },
+    { "key": "number", "prompt": "What is a number?", "type": "number" },
+    { "key": "pluralnoun", "prompt": "What is a plural noun?", "type": "pluralNoun" },
+    { "key": "animal", "prompt": "What is an animal?", "type": "animal" }
+  ],
+  "template": "Captain {name} and {sidekick} the space {animal} had a very important mission: find out whether the moon was really made of cheese.\n\nThey blasted off in a rocket built from a {vehicle} and a lot of duct tape. \"Three, two, one, {noise}!\" they shouted, and zoomed up into space.\n\nAfter {number} days of floating around in their socks, the moon appeared, big and round and a little {adj1}. \"Houston,\" said Captain {name}, \"I smell something cheesy.\"\n\nThey landed with a bump. Sure enough, the ground was crunchy on the outside and gooey on the inside. {sidekick} took a bite and said, \"It's {adj2}! It tastes like {food}!\"\n\nThen they found a secret door. Inside was a huge factory full of moon workers, who were round and green and carried {pluralnoun}. Their boss walked up and said, \"Welcome to Moon Cheese Inc. We've been expecting you.\"\n\n\"You make cheese out of the moon?\" asked Captain {name}.\n\n\"No, no,\" said the boss. \"We make the moon out of cheese. It's a very big job. Want to help?\"\n\nSo Captain {name} put on a hairnet and learned to {verb} the cheese into shape. {sidekick} drove the cheese truck, which went {noise} every time it turned.\n\nAt the end of the day, the moon workers gave them a golden wheel of cheese and a ride home. Back on Earth, Captain {name} told everyone the truth, but nobody believed them.\n\nThey did notice, though, that the moon looked a little bit smiley that night."
+}

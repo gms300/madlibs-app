@@ -1,0 +1,19 @@
+{
+  "id": "rogue-bus",
+  "title": "The Day the School Bus Went Rogue",
+  "description": "A wild ride with a very unusual bus driver",
+  "fields": [
+    { "key": "friend", "prompt": "What is your friend's name?", "type": "personName" },
+    { "key": "adj1", "prompt": "What is an adjective?", "type": "adjective" },
+    { "key": "animal", "prompt": "What is an animal?", "type": "animal" },
+    { "key": "place", "prompt": "What is a place?", "type": "place" },
+    { "key": "food", "prompt": "What is a food?", "type": "food" },
+    { "key": "noise", "prompt": "What is a silly noise?", "type": "noise" },
+    { "key": "verbing", "prompt": "What is a verb ending in -ing?", "type": "verb-ing" },
+    { "key": "number", "prompt": "What is a number?", "type": "number" },
+    { "key": "pluralnoun", "prompt": "What is a plural noun?", "type": "pluralNoun" },
+    { "key": "exclaim", "prompt": "What would you yell when surprised?", "type": "exclamation" },
+    { "key": "bodypart", "prompt": "What is a body part?", "type": "bodyPart" }
+  ],
+  "template": "It was a {adj1} Monday morning, and {friend} was waiting for the school bus. But when the bus finally pulled up, something was very wrong. The driver was a giant {animal} wearing sunglasses!\n\n\"All aboard!\" said the {animal}. \"Next stop: {place}!\"\n\n{friend} climbed the steps and sat down. The seats were made of squishy {food}, and every time the bus hit a bump, it went {noise}! Before anyone could say a word, the whole bus started {verbing} down the road at {number} miles per hour.\n\nAll the kids screamed, \"{exclaim}\" and threw {pluralnoun} out the windows. A police car chased after them, but the {animal} just honked the horn and said, \"Catch me if you can!\"\n\nThe bus zoomed up a hill, flew off a ramp, and soared right over the school. {friend} held on tight with both hands and one {bodypart}. Down below, the principal looked up and dropped her coffee.\n\nFinally, the bus landed in the school parking lot with a giant {noise}. The {animal} hopped out, tipped its hat, and said, \"Sorry I'm late. I got lost on the way to {place}.\"\n\nThe teacher didn't even look up from her desk. \"Take your seats,\" she said. \"And {friend}, please stop {verbing} in the hallway.\"\n\nIt was the best Monday ever."
+}

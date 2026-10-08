@@ -1,13 +1,17 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import './App.css';
 import stories from './stories';
 import typeOptions from './stories/TypeOptions.json';
 
 function App() {
+  const advanceTimeout = useRef(null);
   const [selectedStory, setSelectedStory] = useState(null);
   const [showStorySelection, setShowStorySelection] = useState(true);
   const [currentPage, setCurrentPage] = useState(0);
   const [showStory, setShowStory] = useState(false);
   const [words, setWords] = useState({});
+
+  useEffect(() => () => clearTimeout(advanceTimeout.current), []);
 
   const selectStory = (story) => {
     setSelectedStory(story);
@@ -35,30 +39,21 @@ function App() {
 
   const handleSelectAnswer = (answer) => {
     setWords(prev => ({ ...prev, [fields[currentPage].key]: answer }));
-  };
-
-  const handleNext = () => {
-    if (currentPage < fields.length - 1) {
-      setCurrentPage(currentPage + 1);
-    } else {
-      setShowStory(true);
-    }
+    clearTimeout(advanceTimeout.current);
+    advanceTimeout.current = setTimeout(() => {
+      if (currentPage < fields.length - 1) {
+        setCurrentPage(currentPage + 1);
+      } else {
+        setShowStory(true);
+      }
+    }, 500);
   };
 
   const handlePrev = () => {
+    clearTimeout(advanceTimeout.current);
     if (currentPage > 0) {
       setCurrentPage(currentPage - 1);
     }
-  };
-
-  const handlePlayAgain = () => {
-    setCurrentPage(0);
-    setShowStory(false);
-    const initialWords = {};
-    fields.forEach(field => {
-      initialWords[field.key] = '';
-    });
-    setWords(initialWords);
   };
 
   if (showStorySelection) {
@@ -76,7 +71,7 @@ function App() {
           background: 'white',
           borderRadius: '20px',
           padding: 'clamp(1rem, 5vw, 2rem)',
-          maxWidth: '500px',
+          maxWidth: '900px',
           width: '100%',
           boxShadow: '0 10px 40px rgba(0, 0, 0, 0.2)',
           textAlign: 'center'
@@ -87,7 +82,7 @@ function App() {
             marginTop: 0,
             marginBottom: '1rem',
             color: '#333'
-          }}>🎪 MadLibs! 🎪</h1>
+          }}>Let's make a story!</h1>
 
           <p style={{
             fontSize: '18px',
@@ -98,10 +93,7 @@ function App() {
             Pick a story to get started!
           </p>
 
-          <div style={{
-            display: 'grid',
-            gap: '12px'
-          }}>
+          <div className="story-selection-grid">
             {stories.map(s => (
               <button
                 key={s.id}
@@ -121,12 +113,10 @@ function App() {
                 onMouseEnter={(e) => {
                   e.target.style.background = '#f9f9f9';
                   e.target.style.borderColor = '#667eea';
-                  e.target.style.transform = 'translateX(5px)';
                 }}
                 onMouseLeave={(e) => {
                   e.target.style.background = 'white';
                   e.target.style.borderColor = '#ddd';
-                  e.target.style.transform = 'translateX(0)';
                 }}
               >
                 <div style={{ fontWeight: 700, marginBottom: '0.25rem' }}>{s.title}</div>
@@ -154,7 +144,7 @@ function App() {
           background: 'white',
           borderRadius: '20px',
           padding: 'clamp(1rem, 5vw, 2rem)',
-          maxWidth: '500px',
+          maxWidth: '900px',
           width: '100%',
           boxShadow: '0 10px 40px rgba(0, 0, 0, 0.2)',
           textAlign: 'center'
@@ -165,44 +155,18 @@ function App() {
             marginTop: 0,
             marginBottom: '0.75rem',
             color: '#333'
-          }}>✨ Your Story! ✨</h1>
+          }}>{selectedStory.title}</h1>
 
           <p style={{
             fontSize: 'clamp(18px, 3vh, 24px)',
             lineHeight: '1.45',
             color: '#333',
-            marginBottom: '1rem',
+            marginBottom: '2rem',
+            whiteSpace: 'pre-line',
             fontFamily: 'Georgia, serif'
           }}>
             {story}
           </p>
-
-          <button
-            onClick={handlePlayAgain}
-            style={{
-              width: '100%',
-              padding: 'clamp(10px, 2vh, 20px) 12px',
-              backgroundColor: '#667eea',
-              border: 'none',
-              borderRadius: '15px',
-              fontSize: 'clamp(18px, 3vh, 24px)',
-              fontWeight: 700,
-              cursor: 'pointer',
-              color: 'white',
-              transition: 'transform 0.2s, box-shadow 0.2s',
-              marginBottom: '12px'
-            }}
-            onMouseEnter={(e) => {
-              e.target.style.transform = 'scale(1.05)';
-              e.target.style.boxShadow = '0 5px 20px rgba(102, 126, 234, 0.4)';
-            }}
-            onMouseLeave={(e) => {
-              e.target.style.transform = 'scale(1)';
-              e.target.style.boxShadow = 'none';
-            }}
-          >
-            🎮 Play Again! 🎮
-          </button>
 
           <button
             onClick={() => {
@@ -230,7 +194,7 @@ function App() {
               e.target.style.boxShadow = 'none';
             }}
           >
-            📚 Choose Another Story 📚
+            Start Over
           </button>
         </div>
       </div>
@@ -339,7 +303,7 @@ function App() {
         </div>
       </div>
 
-      {/* Bottom: Static Navigation Buttons */}
+      {/* Bottom: Back navigation */}
       <div style={{
         flexShrink: 0,
         display: 'flex',
@@ -378,33 +342,6 @@ function App() {
           ← Back
         </button>
 
-        <button
-          onClick={handleNext}
-          disabled={!currentAnswer}
-          style={{
-            flex: 1,
-            padding: '16px 12px',
-            fontSize: '18px',
-            fontWeight: 600,
-            border: 'none',
-            borderRadius: '12px',
-            background: !currentAnswer ? '#ccc' : '#667eea',
-            color: 'white',
-            cursor: !currentAnswer ? 'not-allowed' : 'pointer',
-            transition: 'transform 0.2s',
-            opacity: !currentAnswer ? 0.5 : 1
-          }}
-          onMouseEnter={(e) => {
-            if (currentAnswer) {
-              e.target.style.transform = 'scale(1.05)';
-            }
-          }}
-          onMouseLeave={(e) => {
-            e.target.style.transform = 'scale(1)';
-          }}
-        >
-          {currentPage === fields.length - 1 ? 'See Story!' : 'Next'} →
-        </button>
       </div>
     </div>
   );

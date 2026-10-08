@@ -1,9 +1,21 @@
 {
-  "personName": ["Gideon", "Harleigh", "Juju", "Cami", "Emma"],
-  "container": ["bucket", "pail", "jar", "bottle", "basket", "box"],
-  "substance": ["water", "milk", "tacos", "pizza"],
-  "bodyPart": ["arm", "leg", "head", "foot", "hand"],
-  "verb-present": ["running", "jumping", "swimming", "flying", "crawling"],
-  "adjective": ["happy", "sad", "angry", "excited", "bored"],
-  "animal": ["lion", "tiger", "bear", "elephant", "giraffe"]
+  "personName": ["Gideon", "Harleigh", "Juju", "Cami", "Emma", "Mimi", "Papa", "Zane", "Mom", "Dad", "Jude", "Eva"],
+  "container": ["bucket", "pail", "jar", "bottle", "basket", "box", "trunk", "bag", "suitcase", "chest", "garage can", "lunchbox", "backpack", "cup"],
+  "substance": ["water", "milk", "tacos", "pizza", "soda", "popcorn", "pickles", "chocolate", "honey", "mud", "sand", "leaves", "cookies", "jellybeans"],
+  "bodyPart": ["arm", "leg", "head", "foot", "hand", "ear", "nose", "eye", "mouth", "finger", "toe", "back", "chest", "knee", "elbow", "shoulder"],
+  "verb-ing": ["running", "jumping", "swimming", "flying", "crawling", "skipping", "hopping", "dancing", "singing", "climbing"],
+  "adjective": ["happy", "sad", "angry", "excited", "bored", "curious", "sleepy", "hungry", "brave", "confused"],
+  "animal": ["lion", "tiger", "bear", "elephant", "giraffe", "monkey", "zebra", "kangaroo", "panda", "rhino", "cheetah", "wolf", "fox", "rabbit"],
+  "verb": ["jump", "wiggle", "dance", "yodel", "sprint", "run", "skip", "hop", "crawl", "climb"],
+  "place": ["the zoo", "the moon", "Antarctica", "the beach", "school", "the park", "the mountains", "the forest", "the desert", "the city", "the pool", "the lake"],
+  "food": ["pizza", "pickles", "pancakes", "spaghetti", "ice cream", "burgers", "hot dogs", "sushi", "tacos", "salad", "noodles", "fruit", "cake", "pie"],
+  "noise": ["BOING", "SPLORT", "HONK", "KERPLUNK", "ZOOP", "BANG", "CRASH", "WHAM", "THUD", "CLANG"],
+  "number": ["1", "2", "3", "4", "5", "6", "7", "10", "30", "42", "55", "100"],
+  "pluralNoun": ["socks", "robots", "bananas", "marbles", "shoes", "hats", "gloves", "books", "chairs", "tables", "cups", "plates", "pencils", "toys"],
+  "exclamation": ["Whoa!", "Amazing!", "Look out!", "Yippee!", "Oh no!", "Hooray!", "6-7!", "Yikes!", "Bravo!", "Fantastic!", "Incredible!", "Bro!", "Super!", "Wow!", "Great!", "Excellent!"],
+  "color": ["purple", "green", "striped", "gold", "polka-dotted", "blue", "red", "orange", "pink", "black", "white", "silver"],
+  "subject": ["math", "SPED", "history", "reading", "art", "music"],
+  "seaCreature": ["octopus", "jellyfish", "crab", "shark", "seahorse", "dolphin", "whale", "starfish", "lobster", "clam", "squid", "manta ray"],
+  "gift": ["rubber chicken", "submarine", "seashell", "bubble machine", "spatula", "magic wand", "toy car", "stuffed animal", "board game", "puzzle", "book", "painting"],
+  "vehicle": ["tractor", "skateboard", "shopping cart", "school bus", "unicycle", "bicycle", "scooter", "roller skates", "hoverboard", "tricycle", "motorcycle", "car", "truck", "van", "boat", "airplane"]
 }
