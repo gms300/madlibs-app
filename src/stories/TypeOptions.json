@@ -17,5 +17,10 @@
   "subject": ["math", "SPED", "history", "reading", "art", "music"],
   "seaCreature": ["octopus", "jellyfish", "crab", "shark", "seahorse", "dolphin", "whale", "starfish", "lobster", "clam", "squid", "manta ray"],
   "gift": ["rubber chicken", "submarine", "seashell", "bubble machine", "spatula", "magic wand", "toy car", "stuffed animal", "board game", "puzzle", "book", "painting"],
-  "vehicle": ["tractor", "skateboard", "shopping cart", "school bus", "unicycle", "bicycle", "scooter", "roller skates", "hoverboard", "tricycle", "motorcycle", "car", "truck", "van", "boat", "airplane"]
+  "vehicle": ["tractor", "skateboard", "shopping cart", "school bus", "unicycle", "bicycle", "scooter", "roller skates", "hoverboard", "tricycle", "motorcycle", "car", "truck", "van", "boat", "airplane"],
+  "sillyAdjective": ["squishy", "gooey", "wobbly", "stinky", "sparkly", "fluffy", "slimy", "bouncy", "grumpy", "giggly", "crunchy", "itchy", "soggy", "enormous"],
+  "sillyAnimal": ["llama", "platypus", "sloth", "penguin", "narwhal", "chicken", "goat", "hamster", "walrus", "flamingo", "hedgehog", "goose"],
+  "sillyObject": ["spatula", "rubber chicken", "plunger", "banana peel", "umbrella", "trombone", "garden gnome", "pogo stick", "fly swatter", "wizard hat", "bouncy ball", "bathtub"],
+  "job": ["pirate", "clown", "astronaut", "chef", "detective", "wizard", "knight", "mad scientist", "magician", "firefighter", "king", "robot"],
+  "superpower": ["super speed", "invisibility", "stretchy arms", "laser eyeballs", "talking to animals", "flying", "super burps", "turning into a pickle", "freezing time", "shooting spaghetti from their fingers", "super strength", "growing giant"]
 }
