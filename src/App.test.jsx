@@ -1,7 +1,7 @@
 import { act, fireEvent, render, screen } from '@testing-library/react';
 import App from './App';
-import stories from './stories';
-import typeOptions from './stories/TypeOptions.json';
+import stories from './data';
+import typeOptions from './data/TypeOptions.json';
 import { vi } from 'vitest';
 
 test('renders the story selection page', () => {

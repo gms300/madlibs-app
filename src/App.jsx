@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './App.css';
-import stories from './stories';
-import typeOptions from './stories/TypeOptions.json';
+import stories from './data';
+import typeOptions from './data/TypeOptions.json';
 
 function App() {
   const advanceTimeout = useRef(null);
