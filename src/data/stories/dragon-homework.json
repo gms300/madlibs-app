@@ -9,7 +9,7 @@
     { "key": "food", "prompt": "What is a food?", "type": "food" },
     { "key": "adj1", "prompt": "What is an adjective?", "type": "adjective" },
     { "key": "adj2", "prompt": "What is another adjective?", "type": "adjective" },
-    { "key": "verb", "prompt": "What is a verb?", "type": "verb" },
+    { "key": "verb", "prompt": "What is an action word?", "type": "verb" },
     { "key": "subject", "prompt": "What is a school subject?", "type": "subject" },
     { "key": "noise", "prompt": "What is a silly noise?", "type": "noise" },
     { "key": "number", "prompt": "What is a number?", "type": "number" },

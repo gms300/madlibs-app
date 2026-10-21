@@ -3,7 +3,7 @@
   "title": "Superhero Training Camp",
   "description": "Learn to save the day with a very grumpy teacher",
   "fields": [
-    {"key": "name1", "prompt": "What is a person's name?", "type": "personName"},
+    {"key": "name", "prompt": "What is a person's name?", "type": "personName"},
     {"key": "color", "prompt": "What is a color?", "type": "color"},
     {"key": "animal", "prompt": "What is a silly animal?", "type": "sillyAnimal"},
     {"key": "power", "prompt": "What is a superpower?", "type": "superpower"},
@@ -13,7 +13,7 @@
     {"key": "vehicle", "prompt": "What is a vehicle?", "type": "vehicle"},
     {"key": "exclaim", "prompt": "What would you yell when surprised?", "type": "exclamation"},
     {"key": "noise", "prompt": "What is a silly noise?", "type": "noise"},
-    {"key": "verb", "prompt": "What is a verb?", "type": "verb"}
+    {"key": "verb", "prompt": "What is an action word?", "type": "verb"}
   ],
-  "template": "Welcome to Superhero Training Camp! {name1} arrived on the first day wearing a brand-new cape. The cape was {color}, and it flapped very dramatically even when there was no wind.\n\nThe instructor was the world's grumpiest {animal}, wearing a tiny helmet. \"I am Captain Mustard,\" it said. \"What is your superpower?\"\n\n\"I have the power of {power}!\" said {name1}.\n\n\"Prove it,\" said Captain Mustard.\n\nJust then, the alarm rang. The Evil {job} was stealing every {object} in town! \"This is not a drill!\" cried the Captain. \"Go, go, go!\"\n\n{name1} jumped onto the nearest {vehicle} and raced down the street. Everyone on the sidewalk looked up and shouted, \"{exclaim}\"\n\nSoon {name1} spotted the Evil {job} running away with a sack full of {object} and laughing like a goose. It was time to use the big power.\n\n\"{power}!\" shouted {name1}.\n\nIt went {noise}! Suddenly the {adj} Evil {job} tripped over a curb, dropped the sack, and rolled right into the town fountain.\n\nBut the sack was heavy. {name1} had to {verb} all the way back to camp, with the cape flapping behind in the wind.\n\nCaptain Mustard was waiting at the gate. For a long time the {animal} said nothing.\n\nThen it pinned a shiny medal on the {color} cape. \"Not bad,\" it said. \"You can be on my team. But you have to {verb} with the team every morning.\"\n\n{name1} was officially a superhero."
+  "template": "Welcome to Superhero Training Camp! {name} arrived on the first day wearing a brand-new cape. The cape was {color}, and it flapped very dramatically even when there was no wind.\n\nThe instructor was the world's grumpiest {animal}, wearing a tiny helmet. \"I am Captain Mustard,\" it said. \"What is your superpower?\"\n\n\"I have the power of {power}!\" said {name}.\n\n\"Prove it,\" said Captain Mustard.\n\nJust then, the alarm rang. The Evil {job} was stealing every {object} in town! \"This is not a drill!\" cried the Captain. \"Go, go, go!\"\n\n{name} jumped onto the nearest {vehicle} and raced down the street. Everyone on the sidewalk looked up and shouted, \"{exclaim}\"\n\nSoon {name} spotted the Evil {job} running away with a sack full of {object} and laughing like a goose. It was time to use the big power.\n\n\"{power}!\" shouted {name}.\n\nIt went {noise}! Suddenly the {adj} Evil {job} tripped over a curb, dropped the sack, and rolled right into the town fountain.\n\nBut the sack was heavy. {name} had to {verb} all the way back to camp, with the cape flapping behind in the wind.\n\nCaptain Mustard was waiting at the gate. For a long time the {animal} said nothing.\n\nThen it pinned a shiny medal on the {color} cape. \"Not bad,\" it said. \"You can be on my team. But you have to {verb} with the team every morning.\"\n\n{name} was officially a superhero."
 }

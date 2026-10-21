@@ -3,6 +3,19 @@ import './App.css';
 import stories from './data';
 import typeOptions from './data/TypeOptions.json';
 
+export function renderStory(template, answers) {
+  return template.replace(/\{([^{}.]+)(?:\.([^{}.]+))?\}/g, (placeholder, key, attribute) => {
+    if (!Object.hasOwn(answers, key)) return placeholder;
+    const answer = answers[key];
+    if (attribute) {
+      return answer?.attributes && Object.hasOwn(answer.attributes, attribute)
+        ? answer.attributes[attribute]
+        : placeholder;
+    }
+    return answer.value;
+  });
+}
+
 function App() {
   const advanceTimeout = useRef(null);
   const [selectedStory, setSelectedStory] = useState(null);
@@ -16,24 +29,12 @@ function App() {
   const selectStory = (story) => {
     setSelectedStory(story);
     setShowStorySelection(false);
-    const initialWords = {};
-    story.fields.forEach(field => {
-      initialWords[field.key] = '';
-    });
-    setWords(initialWords);
+    setWords({});
     setCurrentPage(0);
     setShowStory(false);
   };
 
   const fields = selectedStory?.fields || [];
-
-  const renderStory = (template, answers) => {
-    let result = template;
-    Object.entries(answers).forEach(([key, value]) => {
-      result = result.replace(new RegExp(`\\{${key}\\}`, 'g'), value);
-    });
-    return result;
-  };
 
   const story = selectedStory ? renderStory(selectedStory.template, words) : '';
 
@@ -239,7 +240,7 @@ function App() {
           marginTop: 0,
           marginBottom: 0
         }}>
-          {field.prompt}
+          {renderStory(field.prompt, words)}
         </h2>
       </div>
 
@@ -259,7 +260,7 @@ function App() {
         }}>
           {typeOptions[field.type].map(option => (
             <button
-              key={option}
+              key={option.value}
               onClick={() => handleSelectAnswer(option)}
               style={{
                 padding: '18px 12px',
@@ -297,7 +298,7 @@ function App() {
                 }
               }}
             >
-              <span>{currentAnswer === option && '✓ '}{option}</span>
+              <span>{currentAnswer === option && '✓ '}{option.value}</span>
             </button>
           ))}
         </div>
