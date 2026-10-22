@@ -1,8 +1,10 @@
 import { defineConfig } from 'vitest/config';
 import react from '@vitejs/plugin-react';
+import { loadEnv } from 'vite';
+import { catalogFilesPlugin } from './server/catalog.mjs';
 
-export default defineConfig({
-  plugins: [react()],
+export default defineConfig(({ mode }) => ({
+  plugins: [react(), catalogFilesPlugin(loadEnv(mode, process.cwd(), '').VITE_ADMIN_PASSCODE ?? '1234')],
   build: {
     outDir: 'build'
   },
@@ -15,4 +17,4 @@ export default defineConfig({
     host: true,
     allowedHosts: ['greg-dev.tail91e83c.ts.net']
   }
-});
+}));

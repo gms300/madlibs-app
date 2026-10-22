@@ -5,8 +5,13 @@
   "fields": [
     {
       "key": "name",
-      "prompt": "What is a person's name?",
+      "prompt": "Choose a person's name.",
       "type": "personName"
+    },
+    {
+      "key": "name2",
+      "type": "personName",
+      "prompt": "Choose another person's name."
     },
     {
       "key": "animal",
@@ -24,5 +29,5 @@
       "type": "verb"
     }
   ],
-  "template": "{name} took a trip to the zoo.  {name.pronoun} saw many animals and had a great time.  The {adjective} {animal} was {verb.ingTense}."
+  "template": "{name} took a trip to the zoo.  {name.pronoun | capitalizeFirst} saw many animals and had a great time.  There was {adjective.article} {adjective} {animal}.\n\nThe {animal} was named {name2}.  {name2} was {verb.ingTense}."
 }

@@ -2,32 +2,61 @@ import React, { useEffect, useRef, useState } from 'react';
 import './App.css';
 import stories from './data';
 import typeOptions from './data/TypeOptions.json';
+import Administration from './Administration';
+import { applyModifiers, findCaseInsensitiveKey, parsePlaceholder } from './storyModifiers.mjs';
+
+const MAX_FIELD_OPTIONS = 10;
+
+export function getRandomOptions(options) {
+  const shuffled = [...options];
+  for (let index = shuffled.length - 1; index > 0; index--) {
+    const swapIndex = Math.floor(Math.random() * (index + 1));
+    [shuffled[index], shuffled[swapIndex]] = [shuffled[swapIndex], shuffled[index]];
+  }
+  return shuffled.slice(0, MAX_FIELD_OPTIONS);
+}
 
 export function renderStory(template, answers) {
-  return template.replace(/\{([^{}.]+)(?:\.([^{}.]+))?\}/g, (placeholder, key, attribute) => {
-    if (!Object.hasOwn(answers, key)) return placeholder;
-    const answer = answers[key];
+  return template.replace(/\{([^{}]+)\}/g, (placeholder, content) => {
+    const parsed = parsePlaceholder(content);
+    if (!parsed) return placeholder;
+    const { key, attribute, modifierNames } = parsed;
+    const answerKey = findCaseInsensitiveKey(answers, key);
+    if (answerKey === undefined) return placeholder;
+    const answer = answers[answerKey];
+    let value;
     if (attribute) {
-      return answer?.attributes && Object.hasOwn(answer.attributes, attribute)
-        ? answer.attributes[attribute]
-        : placeholder;
+      if (!answer?.attributes) return placeholder;
+      const attributeKey = findCaseInsensitiveKey(answer.attributes, attribute);
+      if (attributeKey === undefined) return placeholder;
+      value = answer.attributes[attributeKey];
+    } else {
+      value = answer.value;
     }
-    return answer.value;
+    const modifiedValue = applyModifiers(value, modifierNames);
+    return modifiedValue === null ? placeholder : modifiedValue;
   });
 }
 
 function App() {
+  const [catalog, setCatalog] = useState(() => ({ stories, types: typeOptions }));
+  const [administration, setAdministration] = useState(false);
   const advanceTimeout = useRef(null);
   const [selectedStory, setSelectedStory] = useState(null);
   const [showStorySelection, setShowStorySelection] = useState(true);
   const [currentPage, setCurrentPage] = useState(0);
   const [showStory, setShowStory] = useState(false);
   const [words, setWords] = useState({});
+  const [fieldOptions, setFieldOptions] = useState({});
 
   useEffect(() => () => clearTimeout(advanceTimeout.current), []);
 
   const selectStory = (story) => {
     setSelectedStory(story);
+    setFieldOptions(Object.fromEntries(story.fields.map(field => [
+      field.key,
+      getRandomOptions(catalog.types[field.type])
+    ])));
     setShowStorySelection(false);
     setWords({});
     setCurrentPage(0);
@@ -57,17 +86,40 @@ function App() {
     }
   };
 
+  if (administration) {
+    return <Administration catalog={catalog} onClose={() => setAdministration(false)} onSave={async (next, change, passcode) => {
+      const response = await fetch(`/api/admin/${change.kind === 'type' ? 'types' : 'stories'}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'x-admin-passcode': passcode },
+        body: JSON.stringify(change.kind === 'type'
+          ? { name: change.key, options: next.types[change.key] }
+          : { story: next.stories.find(item => item.id === change.key) })
+      });
+      if (!response.ok) {
+        const result = await response.json().catch(() => null);
+        throw new Error(result?.error ?? 'JSON file saving requires the local development server. Run npm start and try again.');
+      }
+      setCatalog(next);
+    }} />;
+  }
+
   if (showStorySelection) {
     return (
       <div style={{
+        position: 'relative',
         minHeight: '100dvh',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
         padding: '1rem',
+        paddingTop: '3.5rem',
         background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
       }}>
+        <a className="administration-link" href="#administration" onClick={event => {
+          event.preventDefault();
+          setAdministration(true);
+        }}>Administration</a>
         <div style={{
           background: 'white',
           borderRadius: '20px',
@@ -95,7 +147,7 @@ function App() {
           </p>
 
           <div className="story-selection-grid">
-            {stories.map(s => (
+            {catalog.stories.map(s => (
               <button
                 key={s.id}
                 onClick={() => selectStory(s)}
@@ -258,7 +310,7 @@ function App() {
           gridTemplateColumns: '1fr 1fr',
           gap: '12px'
         }}>
-          {typeOptions[field.type].map(option => (
+          {fieldOptions[field.key].map(option => (
             <button
               key={option.value}
               onClick={() => handleSelectAnswer(option)}

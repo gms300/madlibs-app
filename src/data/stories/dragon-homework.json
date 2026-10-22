@@ -3,7 +3,7 @@
   "title": "My Dragon Ate My Homework",
   "description": "Prove to your teacher that the dragon really did it",
   "fields": [
-    { "key": "name", "prompt": "What is a person's name?", "type": "personName" },
+    { "key": "name", "prompt": "Choose a person.", "type": "personName" },
     { "key": "dragon", "prompt": "What is the dragon's name?", "type": "personName" },
     { "key": "color", "prompt": "What is a color?", "type": "color" },
     { "key": "food", "prompt": "What is a food?", "type": "food" },
@@ -13,8 +13,8 @@
     { "key": "subject", "prompt": "What is a school subject?", "type": "subject" },
     { "key": "noise", "prompt": "What is a silly noise?", "type": "noise" },
     { "key": "number", "prompt": "What is a number?", "type": "number" },
-    { "key": "pluralnoun", "prompt": "What is a plural noun?", "type": "pluralNoun" },
+    { "key": "thing", "prompt": "Choose a thing.", "type": "thing" },
     { "key": "place", "prompt": "What is a place?", "type": "place" }
   ],
-  "template": "Everyone knows \"my dog ate my homework\" is the oldest excuse in the book. But when I told Mrs. Pickleton that my DRAGON ate my homework, she said, \"{name}, I'd like to see that.\"\n\nSo after school, I brought her home to meet {dragon}.\n\n{dragon} is a {color} dragon with {adj1} wings and breath that smells like old {food}. When we walked in, {dragon} was lying on the couch watching cartoons and burping little puffs of smoke. Every burp went {noise}!\n\n\"This is the dragon who ate my {subject} homework,\" I told Mrs. Pickleton.\n\n{dragon} looked up and said, \"In my defense, it looked {adj2}.\"\n\nMrs. Pickleton did not believe it. So {dragon} sneezed, and out flew {number} pieces of paper, all covered in slobber. And there it was, my homework, a little burnt around the edges.\n\n\"Well,\" said Mrs. Pickleton, \"I suppose I believe you now.\"\n\nThen {dragon} got a gleam in its eye. \"Since you're here, how about a ride?\" Before she could answer, we were all on its back, soaring over {place}. Mrs. Pickleton screamed, then laughed, then started to {verb} with her arms in the air.\n\nWhen we landed, she was covered in {pluralnoun} and grinning from ear to ear.\n\n\"You get an A on your homework,\" she said. \"And {dragon} gets a gold star for flying.\"\n\nI never had to use the dog excuse again."
+  "template": "Everyone knows \"my dog ate my homework\" is the oldest excuse in the book. But when I told Mrs. Pickleton that my DRAGON ate my homework, she said, \"{name}, I'd like to see that.\"\n\nSo after school, I brought her home to meet {dragon}.\n\n{dragon} is a dragon with {color} scales, {adj1} wings, and breath that smells like old {food}. When we walked in, {dragon} was lying on the couch watching cartoons and burping little puffs of smoke. Every burp went {noise}!\n\n\"This is the dragon who ate my {subject} homework,\" I told Mrs. Pickleton.\n\n{dragon} looked up and said, \"In my defense, it looked {adj2}.\"\n\nMrs. Pickleton did not believe it. So {dragon} sneezed, and out flew {number} pieces of paper, all covered in slobber. And there it was, my homework, a little burnt around the edges.\n\n\"Well,\" said Mrs. Pickleton, \"I suppose I believe you now.\"\n\nThen {dragon} got a gleam in its eye. \"Since you're here, how about a ride?\" Before she could answer, we were all on its back, soaring over {place}. Mrs. Pickleton screamed, then laughed, then started to {verb} with her arms in the air.\n\nWhen we landed, she was covered in {thing.plural} and grinning from ear to ear.\n\n\"You get an A on your homework,\" she said. \"And {dragon} gets a gold star for flying.\"\n\nI never had to use the dog excuse again."
 }

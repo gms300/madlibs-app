@@ -3,14 +3,14 @@
   "title": "The Runaway Pizza",
   "description": "A pizza delivery that walks itself to your door",
   "fields": [
-    {"key": "name", "prompt": "What is a person's name?", "type": "personName"},
+    {"key": "name", "prompt": "Choose a person.", "type": "personName"},
     {"key": "food", "prompt": "What is a food?", "type": "food"},
     {"key": "vehicle", "prompt": "What is a vehicle?", "type": "vehicle"},
-    {"key": "adj", "prompt": "What is a silly describing word?", "type": "sillyAdjective"},
+    {"key": "adj", "prompt": "What is a silly describing word?", "type": "adjective"},
     {"key": "place", "prompt": "What is a place?", "type": "place"},
     {"key": "number", "prompt": "What is a number?", "type": "number"},
-    {"key": "exclaim", "prompt": "What would you yell when surprised?", "type": "exclamation"},
-    {"key": "animal", "prompt": "What is a silly animal?", "type": "sillyAnimal"},
+    {"key": "exclaim", "prompt": "What would someone yell when they are surprised?", "type": "exclamation"},
+    {"key": "animal", "prompt": "What is a silly animal?", "type": "animal"},
     {"key": "job", "prompt": "What is a job?", "type": "job"},
     {"key": "noise", "prompt": "What is a silly noise?", "type": "noise"},
     {"key": "verb", "prompt": "What is an action word?", "type": "verb"}

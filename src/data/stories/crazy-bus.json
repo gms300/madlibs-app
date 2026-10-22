@@ -1,0 +1,19 @@
+{
+  "id": "crazy-bus",
+  "title": "The Day the School Bus Went Crazy",
+  "description": "A wild ride with a very unusual bus driver",
+  "fields": [
+    { "key": "name", "prompt": "Pick a person's name.", "type": "personName" },
+    { "key": "adjective", "prompt": "Pick an adjective.", "type": "adjective" },
+    { "key": "animal", "prompt": "Pick an animal.", "type": "animal" },
+    { "key": "place", "prompt": "Pick a place.", "type": "place" },
+    { "key": "food", "prompt": "Pick a food.", "type": "food" },
+    { "key": "noise", "prompt": "Pick a silly noise.", "type": "noise" },
+    { "key": "verb", "prompt": "Pick an action.", "type": "verb" },
+    { "key": "number", "prompt": "Pick a number.", "type": "number" },
+    { "key": "thing", "prompt": "Pick a thing.", "type": "thing" },
+    { "key": "exclaim", "prompt": "Pick something someone would yell when they are surprised.", "type": "exclamation" },
+    { "key": "bodypart", "prompt": "Pick a body part.", "type": "bodyPart" }
+  ],
+  "template": "It was Monday morning, and {name} felt {adjective} while waiting for the school bus. But when the bus finally pulled up, something was very wrong. The driver was a giant {animal} wearing sunglasses!\n\n\"All aboard!\" said the {animal}. \"Next stop: {place}!\"\n\n{name} climbed the steps and sat down. The seats were made of squishy {food}, and every time the bus hit a bump, it went {noise}! Before anyone could say a word, the whole bus started {verb.ingTense} down the road at {number} miles per hour.\n\nAll the kids screamed, \"{exclaim}\" and threw {thing.plural} out the windows. A police car chased after them, but the {animal} just honked the horn and said, \"Catch me if you can!\"\n\nThe bus zoomed up a hill, flew off a ramp, and soared right over the school. {name} held on tight with both hands and one {bodypart}. Down below, the principal looked up and dropped her coffee.\n\nFinally, the bus landed in the school parking lot with a giant {noise}. The {animal} hopped out, tipped its hat, and said, \"Sorry I'm late. I got lost on the way to {place}.\"\n\nThe teacher didn't even look up from her desk. \"Take your seats,\" she said. \"And {name}, please stop {verb.ingTense} in the hallway.\"\n\nIt was the best Monday ever."
+}

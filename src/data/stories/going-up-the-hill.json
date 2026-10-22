@@ -5,7 +5,7 @@
   "fields": [
     {
       "key": "name1",
-      "prompt": "What is a person's name?",
+      "prompt": "Choose a person.",
       "type": "personName"
     },
     {
@@ -20,7 +20,7 @@
     },
     {
       "key": "substance",
-      "prompt": "What are you carrying?",
+      "prompt": "Choose something that can be carried.",
       "type": "substance"
     },
     {
@@ -44,10 +44,10 @@
       "type": "verb"
     },
     {
-      "key": "pluralnoun",
-      "prompt": "What is a plural noun?",
-      "type": "pluralNoun"
+      "key": "thing",
+      "prompt": "Choose a thing.",
+      "type": "thing"
     }
   ],
-  "template": "On a sunny day, {name1} and {name2} walked up the hill to fly their kite. They packed a {container} with {substance} for their big adventure.\n\nAt the top, the wind whooshed through the grass. Their kite danced high in the sky, then got caught on a friendly old sign. Its tail was tangled with {pluralnoun}, and the kite looked very {adjective}.\n\nThe friends worked together to reach the kite. {name1} held the {container}, while {name2} carefully tugged the string. A loud {noise} came from the bushes. It was only a little bird, cheering them on!\n\nA gust of wind gave the kite a lift, and it floated free. The string looped around {name1}'s {bodyPart}, but {name1} gently untangled it. Everyone was safe, and the bird did a happy dance.\n\nThey sat under a shady tree and shared their {substance}. Before heading home, {name1} and {name2} decided to {verb} all the way down the hill. The bird chirped along as their kite soared above them. They waved goodbye and started planning their next adventure."
+  "template": "On a sunny day, {name1} and {name2} walked up the hill to fly their kite. They packed a {container} with {substance} for their big adventure.\n\nAt the top, the wind whooshed through the grass. Their kite danced high in the sky, then got caught on a friendly old sign. Its tail was tangled with {thing.plural}, and the kite looked very {adjective}.\n\nThe friends worked together to reach the kite. {name1} held the {container}, while {name2} carefully tugged the string. A loud {noise} came from the bushes. It was only a little bird, cheering them on!\n\nA gust of wind gave the kite a lift, and it floated free. The string looped around {name1.possessive} {bodyPart}, but {name1.Pronoun} gently untangled it. Everyone was safe, and the bird did a happy dance.\n\nThey sat under a shady tree and shared their {substance}. Before heading home, {name1} and {name2} decided to {verb} all the way down the hill. The bird chirped along as their kite soared above them. They waved goodbye and started planning their next adventure."
 }
