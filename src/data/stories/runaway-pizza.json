@@ -3,17 +3,61 @@
   "title": "The Runaway Pizza",
   "description": "A pizza delivery that walks itself to your door",
   "fields": [
-    {"key": "name1", "prompt": "What is a person's name?", "type": "personName"},
-    {"key": "food", "prompt": "What is a food?", "type": "food"},
-    {"key": "vehicle", "prompt": "What is a vehicle?", "type": "vehicle"},
-    {"key": "adj", "prompt": "What is a silly describing word?", "type": "sillyAdjective"},
-    {"key": "place", "prompt": "What is a place?", "type": "place"},
-    {"key": "number", "prompt": "What is a number?", "type": "number"},
-    {"key": "exclaim", "prompt": "What would you yell when surprised?", "type": "exclamation"},
-    {"key": "animal", "prompt": "What is a silly animal?", "type": "sillyAnimal"},
-    {"key": "job", "prompt": "What is a job?", "type": "job"},
-    {"key": "noise", "prompt": "What is a silly noise?", "type": "noise"},
-    {"key": "verbing", "prompt": "What is a verb ending in -ing?", "type": "verb-ing"}
+    {
+      "key": "name",
+      "prompt": "Pick a person's name.",
+      "type": "personName"
+    },
+    {
+      "key": "food",
+      "prompt": "Pick a food.",
+      "type": "food"
+    },
+    {
+      "key": "vehicle",
+      "prompt": "Pick a vehicle.",
+      "type": "vehicle"
+    },
+    {
+      "key": "adj",
+      "prompt": "Pick a describing word.",
+      "type": "adjective"
+    },
+    {
+      "key": "place",
+      "prompt": "Pick a place.",
+      "type": "place"
+    },
+    {
+      "key": "number",
+      "prompt": "Pick a number.",
+      "type": "number"
+    },
+    {
+      "key": "exclaim",
+      "prompt": "Pick something someone would yell when they are surprised.",
+      "type": "exclamation"
+    },
+    {
+      "key": "animal",
+      "prompt": "Pick an animal.",
+      "type": "animal"
+    },
+    {
+      "key": "job",
+      "prompt": "Pick a job.",
+      "type": "job"
+    },
+    {
+      "key": "noise",
+      "prompt": "Pick a noise.",
+      "type": "noise"
+    },
+    {
+      "key": "verb",
+      "prompt": "Pick an action.",
+      "type": "verb"
+    }
   ],
-  "template": "Every Friday night, {name1} ordered a pizza, and every Friday night it showed up right on time. But this Friday, the pizza showed up on its own two legs.\n\n\"Delivery!\" it yelled, kicking the door open. It was covered in {food} and wearing tiny sunglasses. \"Sorry I'm late. I got lost on my {vehicle}.\"\n\n{name1} stared. \"You're a talking pizza.\"\n\n\"And you're {adj},\" said the pizza. \"Now hurry up. We have to get to {place} before my cheese gets cold.\"\n\nSo they hopped on the pizza's {vehicle} and zoomed down the street at {number} miles per hour. Everyone they passed yelled, \"{exclaim}\" and ran inside to hide.\n\nHalfway there, one {adj} {animal} jumped into the road and blocked their way. \"Stop right there!\" it said. \"I am the best {job} in town, and I smell something delicious.\"\n\n\"This pizza is not for eating,\" said {name1}. \"It is for saving the day.\"\n\n\"Oh,\" said the {animal}. \"Then I'll ride along.\" And it squeezed onto the {vehicle}, which went {noise}.\n\nWhen they finally got to {place}, a huge crowd was waiting. The pizza took a deep bow and everybody cheered. It turned out the whole town had been waiting years for a pizza that could walk.\n\nOn the way home, the pizza gave {name1} a high five. \"Same time next Friday?\"\n\n{name1} could not stop {verbing} all night long."
+  "template": "Every Friday night, {name} ordered a pizza, and every Friday night it showed up right on time. But this Friday, the pizza showed up on its own two legs.\n\n\"Delivery!\" it yelled, kicking the door open. It was covered in {food} and wearing tiny sunglasses. \"Sorry I'm late. I got lost on my {vehicle}.\"\n\n{name} stared. \"You're a talking pizza.\"\n\n\"And you're {adj},\" said the pizza. \"Now hurry up. We have to get to {place} before my cheese gets cold.\"\n\nSo they hopped on the pizza's {vehicle} and zoomed down the street at {number} miles per hour. Everyone they passed yelled, \"{exclaim}\" and ran inside to hide.\n\nHalfway there, one {adj} {animal} jumped into the road and blocked their way. \"Stop right there!\" it said. \"I am the best {job} in town, and I smell something delicious.\"\n\n\"This pizza is not for eating,\" said {name}. \"It is for saving the day.\"\n\n\"Oh,\" said the {animal}. \"Then I'll ride along.\" And it squeezed onto the {vehicle}, which went {noise}.\n\nWhen they finally got to {place}, a huge crowd was waiting. The pizza took a deep bow and everybody cheered. It turned out the whole town had been waiting years for a pizza that could walk.\n\nOn the way home, the pizza gave {name} a high five. \"Same time next Friday?\"\n\n{name} could not stop {verb.ingTense} all night long."
 }

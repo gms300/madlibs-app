@@ -4,25 +4,30 @@
   "description": "A fun adventure to the zoo",
   "fields": [
     {
-      "key": "name1",
-      "prompt": "What is a person's name?",
+      "key": "name",
+      "prompt": "Pick a person's name.",
       "type": "personName"
     },
     {
-      "key": "animal1",
-      "prompt": "What's the name of an animal?",
+      "key": "name2",
+      "prompt": "Pick another person's name.",
+      "type": "personName"
+    },
+    {
+      "key": "animal",
+      "prompt": "Pick an animal.",
       "type": "animal"
     },
     {
-      "key": "adjective1",
-      "prompt": "What's an adjective?",
+      "key": "adjective",
+      "prompt": "Pick a describing word.",
       "type": "adjective"
     },
     {
-      "key": "verb1",
-      "prompt": "What's a present tense verb?",
-      "type": "verb-ing"
+      "key": "verb",
+      "prompt": "Pick an action.",
+      "type": "verb"
     }
   ],
-  "template": "{name1} took a trip to the zoo.  They saw many animals and had a great time.  The {adjective1} {animal1} was {verb1}."
+  "template": "{name} took a trip to the zoo.  {name.pronoun | capitalizeFirst} saw many animals and had a great time.  There was {adjective.article} {adjective} {animal}.\n\nThe {animal} was named {name2}.  {name2} was {verb.ingTense}."
 }
