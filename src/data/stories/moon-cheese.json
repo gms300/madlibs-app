@@ -5,7 +5,7 @@
   "fields": [
     {
       "key": "name",
-      "prompt": "Pick a person.",
+      "prompt": "Pick a person's name.",
       "type": "personName"
     },
     {
@@ -15,42 +15,42 @@
     },
     {
       "key": "adj1",
-      "prompt": "What is an adjective?",
+      "prompt": "Pick a describing word.",
       "type": "adjective"
     },
     {
       "key": "adj2",
-      "prompt": "What is another adjective?",
+      "prompt": "Pick another describing word.",
       "type": "adjective"
     },
     {
       "key": "food",
-      "prompt": "What is a food?",
+      "prompt": "Pick a food.",
       "type": "food"
     },
     {
       "key": "vehicle",
-      "prompt": "What is a vehicle?",
+      "prompt": "Pick a vehicle.",
       "type": "vehicle"
     },
     {
       "key": "noise",
-      "prompt": "What is a silly noise?",
+      "prompt": "Pick a noise.",
       "type": "noise"
     },
     {
       "key": "verb",
-      "prompt": "What is an action word?",
+      "prompt": "Pick an action.",
       "type": "verb"
     },
     {
       "key": "number",
-      "prompt": "What is a number?",
+      "prompt": "Pick a number.",
       "type": "number"
     },
     {
       "key": "thing",
-      "prompt": "Choose a thing.",
+      "prompt": "Pick a thing.",
       "type": "thing"
     },
     {

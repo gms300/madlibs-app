@@ -35,13 +35,14 @@ test('administration requires the passcode before showing editors', () => {
   expect(screen.getByRole('button', { name: 'Add Story' })).toBeInTheDocument();
 });
 
-test('story modes preview variables and sample first values while keeping the story box read-only', () => {
+test('story modes preview variables and sample values while keeping the story box read-only', () => {
+  vi.spyOn(Math, 'random').mockReturnValue(0);
   render(<App />);
   unlockAdministration();
   fireEvent.click(screen.getByRole('button', { name: 'The Day the School Bus Went Crazy' }));
 
   const preview = screen.getByRole('region', { name: 'Story' });
-  expect(preview.querySelector('.admin-story-variable')).toHaveTextContent('{friend}');
+  expect(preview.querySelector('.admin-story-variable')).toHaveTextContent('{name}');
   expect(screen.queryByRole('textbox', { name: 'Story' })).not.toBeInTheDocument();
 
   fireEvent.click(screen.getByRole('button', { name: 'Sample Mode' }));
@@ -54,10 +55,25 @@ test('story modes preview variables and sample first values while keeping the st
   expect(screen.queryByRole('region', { name: 'Story' })).not.toBeInTheDocument();
 
   fireEvent.click(screen.getByRole('button', { name: 'View Mode' }));
-  expect(screen.getByRole('region', { name: 'Story' })).toHaveTextContent('{friend}');
+  expect(screen.getByRole('region', { name: 'Story' })).toHaveTextContent('{name}');
+  vi.restoreAllMocks();
+});
+
+test('sample mode selects a random option for each field on entry', () => {
+  vi.spyOn(Math, 'random').mockReturnValue(0.999999);
+  render(<App />);
+  unlockAdministration();
+  fireEvent.click(screen.getByRole('button', { name: 'Trip to the Zoo' }));
+  fireEvent.click(screen.getByRole('button', { name: 'Sample Mode' }));
+
+  const preview = screen.getByRole('region', { name: 'Story' });
+  expect(preview.querySelector('.admin-story-variable')).toHaveTextContent(typeOptions.personName.at(-1).value);
+  expect(preview).toHaveTextContent('She');
+  vi.restoreAllMocks();
 });
 
 test('sample mode applies modifiers to attribute values', () => {
+  vi.spyOn(Math, 'random').mockReturnValue(0);
   const story = stories.find(item => item.id === 'trip-to-the-zoo');
   const originalTemplate = story.template;
   story.template = '{NAME.PRonoun | CapitalizeFirst}.';
@@ -69,10 +85,12 @@ test('sample mode applies modifiers to attribute values', () => {
     expect(screen.getByRole('region', { name: 'Story' })).toHaveTextContent('He.');
   } finally {
     story.template = originalTemplate;
+    vi.restoreAllMocks();
   }
 });
 
 test('sample mode marks unresolved variables red', () => {
+  vi.spyOn(Math, 'random').mockReturnValue(0);
   const story = stories.find(item => item.id === 'trip-to-the-zoo');
   const originalTemplate = story.template;
   story.template = '{missing} {name.unknown} {name | UnknownModifier} {name}.';
@@ -90,11 +108,16 @@ test('sample mode marks unresolved variables red', () => {
       .every(variable => !variable.classList.contains('admin-story-variable-unresolved'))).toBe(true);
   } finally {
     story.template = originalTemplate;
+    vi.restoreAllMocks();
   }
 });
 
 test('sample mode lets a hovered attribute value select a matching option', () => {
   vi.useFakeTimers();
+  vi.spyOn(Math, 'random').mockReturnValue(0);
+  const story = stories.find(item => item.id === 'trip-to-the-zoo');
+  const originalTemplate = story.template;
+  story.template = '{name.pronoun}.';
   try {
     render(<App />);
     unlockAdministration();
@@ -106,10 +129,11 @@ test('sample mode lets a hovered attribute value select a matching option', () =
     act(() => vi.advanceTimersByTime(500));
 
     const selector = screen.getByRole('combobox', { name: 'Sample value for name pronoun' });
-    expect([...selector.options].map(option => option.textContent)).toEqual([
-      'Gideon — he', 'Harleigh — she', 'Juju — she', 'Cami — she', 'Emma — she', 'Mimi — she',
-      'Papa — he', 'Zane — he', 'Mom — she', 'Dad — he', 'Jude — he', 'Eva — she'
-    ]);
+    expect([...selector.options].map(option => option.textContent)).toEqual(
+      typeOptions.personName
+        .map(option => `${option.value} — ${option.attributes.pronoun}`)
+        .sort((first, second) => first.localeCompare(second, undefined, { sensitivity: 'base' }))
+    );
     fireEvent.mouseLeave(friendPronoun.parentElement);
     act(() => vi.advanceTimersByTime(300));
     expect(screen.getByRole('combobox', { name: 'Sample value for name pronoun' })).toBeInTheDocument();
@@ -127,7 +151,9 @@ test('sample mode lets a hovered attribute value select a matching option', () =
     act(() => vi.advanceTimersByTime(1));
     expect(screen.queryByRole('combobox', { name: 'Sample value for name pronoun' })).not.toBeInTheDocument();
   } finally {
+    story.template = originalTemplate;
     vi.useRealTimers();
+    vi.restoreAllMocks();
   }
 });
 
@@ -273,15 +299,14 @@ test('inline attribute headers reject duplicates and invalid names and save pend
   expect(JSON.parse(fetch.mock.calls[0][1].body).options.every(option => option.attributes.nickname === '')).toBe(true);
 });
 
-test('story editing rejects unknown placeholders without overwriting the saved story', () => {
+test('story editing saves invalid fields and keeps validation errors visible', async () => {
   render(<App />);
   unlockAdministration();
   fireEvent.click(screen.getByRole('button', { name: 'Going Up the Hill', exact: true }));
-  fireEvent.click(screen.getByRole('button', { name: 'Edit Mode' }));
-  fireEvent.change(screen.getByLabelText('Story', { exact: true }), { target: { value: '{missing}' } });
-  fireEvent.click(screen.getByRole('button', { name: 'Save changes' }));
-  expect(screen.getByRole('alert')).toHaveTextContent('Unknown or unavailable placeholder: {missing}');
-  expect(fetch).not.toHaveBeenCalled();
+  fireEvent.change(screen.getByLabelText('Field prompt 1'), { target: { value: '' } });
+  await saveChanges();
+  expect(screen.getByRole('alert')).toHaveTextContent('Each field needs a valid key and a prompt.');
+  expect(JSON.parse(fetch.mock.calls[0][1].body).story.fields[0].prompt).toBe('');
 });
 
 test('story editing accepts case-insensitive field and attribute placeholders', async () => {
@@ -349,6 +374,24 @@ test('selecting a story opens its first question', () => {
   expect(screen.queryByRole('button', { name: /let's go/i })).not.toBeInTheDocument();
 });
 
+test('story settings show Story before collapsible Fields sections', () => {
+  render(<App />);
+  unlockAdministration();
+  fireEvent.click(screen.getByRole('button', { name: 'Going Up the Hill', exact: true }));
+
+  const sections = [...document.querySelectorAll('.admin-settings-section')];
+  expect(sections.map(section => section.querySelector('.admin-section-title').textContent)).toEqual(['Story', 'Fields']);
+  sections.forEach(section => expect(section).toHaveAttribute('open'));
+
+  const storySummary = screen.getByRole('heading', { name: 'Story' }).closest('summary');
+  fireEvent.click(storySummary);
+  expect(sections[0]).not.toHaveAttribute('open');
+
+  const fieldsSummary = screen.getByRole('heading', { name: 'Fields' }).closest('summary');
+  fireEvent.click(fieldsSummary);
+  expect(sections[1]).not.toHaveAttribute('open');
+});
+
 test('prompts resolve values collected from earlier questions', () => {
   vi.useFakeTimers();
   const selectedStory = stories.find(story => story.id === 'underwater-party');
@@ -394,7 +437,7 @@ test('randomizes choices and limits each prompt to ten without changing source o
 
   try {
     const randomizedOptions = getRandomOptions(options);
-    const shortOptions = typeOptions.subject;
+    const shortOptions = typeOptions.schoolSubject;
     const randomizedShortOptions = getRandomOptions(shortOptions);
 
     expect(randomizedOptions).toHaveLength(10);

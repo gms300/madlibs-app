@@ -57,26 +57,39 @@ test('updates existing stories and adds new stories as separate JSON files', asy
   expect(plugin.hotUpdate({ file: join(root, 'src/data/stories/new-story.json') })).toEqual([]);
 });
 
-test('accepts known modifiers and rejects unknown modifiers in story placeholders', async () => {
+test('saves unknown modifiers in story placeholders for editor diagnostics', async () => {
   const modified = {
     ...initialStory,
     template: '{person | capitalizefirst} said {person.pronoun | CAPITALIZEFIRST}.'
   };
   expect((await post('/api/admin/stories', { story: modified })).status).toBe(200);
+  const invalid = { ...modified, template: '{person | NotAModifier}' };
+  expect((await post('/api/admin/stories', { story: invalid })).status).toBe(200);
+  expect(JSON.parse(await readFile(join(root, 'src/data/stories/test-story.json'), 'utf8'))).toEqual(invalid);
+});
+
+test('saves stories with invalid field values while requiring a safe story structure', async () => {
+  const invalid = {
+    ...initialStory,
+    fields: [{ key: 'not valid', type: 'missingType', prompt: '' }],
+    template: '{unknown}'
+  };
+  expect((await post('/api/admin/stories', { story: invalid })).status).toBe(200);
+  expect(JSON.parse(await readFile(join(root, 'src/data/stories/test-story.json'), 'utf8'))).toEqual(invalid);
   expect((await post('/api/admin/stories', {
-    story: { ...modified, template: '{person | NotAModifier}' }
+    story: { ...invalid, fields: [null] }
   })).status).toBe(400);
 });
 
-test('matches story field and attribute names without case sensitivity', async () => {
+test('matches placeholders case-insensitively and saves duplicate keys for editor diagnostics', async () => {
   const story = {
     ...initialStory,
     template: '{PERSON} said {PeRsOn.PrOnOuN} smiled.'
   };
   expect((await post('/api/admin/stories', { story })).status).toBe(200);
-  expect((await post('/api/admin/stories', {
-    story: { ...story, fields: [...story.fields, { ...story.fields[0], key: 'PERSON' }] }
-  })).status).toBe(400);
+  const duplicateKeys = { ...story, fields: [...story.fields, { ...story.fields[0], key: 'PERSON' }] };
+  expect((await post('/api/admin/stories', { story: duplicateKeys })).status).toBe(200);
+  expect(JSON.parse(await readFile(join(root, 'src/data/stories/test-story.json'), 'utf8'))).toEqual(duplicateKeys);
 });
 
 test('rejects attribute names that differ only by case', async () => {
@@ -93,9 +106,11 @@ test('rejects incorrect passcodes and cross-origin writes', async () => {
   expect(JSON.parse(await readFile(join(root, 'src/data/TypeOptions.json'), 'utf8'))).toEqual(initialTypes);
 });
 
-test('rejects path traversal, invalid types, and broken story references', async () => {
+test('rejects path traversal and invalid types while allowing broken story references', async () => {
   expect((await post('/api/admin/stories', { story: { ...initialStory, id: '../../outside' } })).status).toBe(400);
-  expect((await post('/api/admin/stories', { story: { ...initialStory, template: '{unknown}' } })).status).toBe(400);
+  const invalidStory = { ...initialStory, template: '{unknown}' };
+  expect((await post('/api/admin/stories', { story: invalidStory })).status).toBe(200);
+  expect(JSON.parse(await readFile(join(root, 'src/data/stories/test-story.json'), 'utf8'))).toEqual(invalidStory);
   expect((await post('/api/admin/types', { name: 'personName', options: [{ value: 'Sam' }] })).status).toBe(400);
   expect((await post('/api/admin/types', { name: 'food', options: [{ value: '' }] })).status).toBe(400);
   expect(JSON.parse(await readFile(join(root, 'src/data/TypeOptions.json'), 'utf8'))).toEqual(initialTypes);

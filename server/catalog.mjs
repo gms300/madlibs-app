@@ -38,6 +38,14 @@ function validateStory(story, types) {
   return validText(story.template, story.fields) && story.fields.every((field, index) => validText(field.prompt, story.fields.slice(0, index)));
 }
 
+function isSavableStory(story) {
+  return isObject(story) && typeof story.id === 'string' && storyId.test(story.id) &&
+    typeof story.title === 'string' && typeof story.description === 'string' &&
+    typeof story.template === 'string' && Array.isArray(story.fields) &&
+    story.fields.every(field => isObject(field) && typeof field.key === 'string' &&
+      typeof field.type === 'string' && typeof field.prompt === 'string');
+}
+
 async function readJson(file) {
   return JSON.parse(await readFile(file, 'utf8'));
 }
@@ -103,11 +111,11 @@ export function createCatalogMiddleware({ root, passcode, onCatalogWrite = () =>
       if (pathname === '/api/admin/types') {
         if (typeof body.name !== 'string' || !validateType(body.name, body.options)) return send(400, { error: 'Invalid type name, values, or attributes.' });
         const updated = { ...types, [body.name]: body.options };
-        const invalidStory = stories.find(({ story }) => story.fields.some(field => field.type === body.name) && !validateStory(story, updated));
+        const invalidStory = stories.find(({ story }) => story.fields.some(field => field?.type === body.name) && !validateStory(story, updated));
         if (invalidStory) return send(400, { error: `This change would break story: ${invalidStory.story.title}` });
         await saveJson(typesFile, updated, onCatalogWrite);
       } else {
-        if (!validateStory(body.story, types)) return send(400, { error: 'Invalid story, field types, or placeholders.' });
+        if (!isSavableStory(body.story)) return send(400, { error: 'Invalid story data or ID.' });
         const existing = stories.find(({ story }) => story.id === body.story.id);
         const filename = existing?.file ?? `${body.story.id}.json`;
         await saveJson(join(storiesDirectory, filename), body.story, onCatalogWrite);

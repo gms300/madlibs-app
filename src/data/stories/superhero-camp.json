@@ -3,17 +3,61 @@
   "title": "Superhero Training Camp",
   "description": "Learn to save the day with a very grumpy teacher",
   "fields": [
-    {"key": "name", "prompt": "Choose a person.", "type": "personName"},
-    {"key": "color", "prompt": "What is a color?", "type": "color"},
-    {"key": "animal", "prompt": "What is a silly animal?", "type": "animal"},
-    {"key": "power", "prompt": "What is a superpower?", "type": "superpower"},
-    {"key": "adj", "prompt": "What is a silly describing word?", "type": "adjective"},
-    {"key": "job", "prompt": "What is a job?", "type": "job"},
-    {"key": "object", "prompt": "What is a silly object?", "type": "thing"},
-    {"key": "vehicle", "prompt": "What is a vehicle?", "type": "vehicle"},
-    {"key": "exclaim", "prompt": "What would someone yell when they are surprised?", "type": "exclamation"},
-    {"key": "noise", "prompt": "What is a silly noise?", "type": "noise"},
-    {"key": "verb", "prompt": "What is an action word?", "type": "verb"}
+    {
+      "key": "name",
+      "prompt": "Pick a person's name.",
+      "type": "personName"
+    },
+    {
+      "key": "color",
+      "prompt": "Pick a color.",
+      "type": "color"
+    },
+    {
+      "key": "animal",
+      "prompt": "Pick an animal.",
+      "type": "animal"
+    },
+    {
+      "key": "power",
+      "prompt": "Pick a superpower.",
+      "type": "superpower"
+    },
+    {
+      "key": "adj",
+      "prompt": "Pick a describing word.",
+      "type": "adjective"
+    },
+    {
+      "key": "job",
+      "prompt": "Pick a job.",
+      "type": "job"
+    },
+    {
+      "key": "object",
+      "prompt": "Pick a thing.",
+      "type": "thing"
+    },
+    {
+      "key": "vehicle",
+      "prompt": "Pick a vehicle.",
+      "type": "vehicle"
+    },
+    {
+      "key": "exclaim",
+      "prompt": "Pick something someone would yell when they are surprised.",
+      "type": "exclamation"
+    },
+    {
+      "key": "noise",
+      "prompt": "Pick a noise.",
+      "type": "noise"
+    },
+    {
+      "key": "verb",
+      "prompt": "Pick an action.",
+      "type": "verb"
+    }
   ],
   "template": "Welcome to Superhero Training Camp! {name} arrived on the first day wearing a brand-new cape. The cape was {color}, and it flapped very dramatically even when there was no wind.\n\nThe instructor was the world's grumpiest {animal}, wearing a tiny helmet. \"I am Captain Mustard,\" it said. \"What is your superpower?\"\n\n\"I have the power of {power}!\" said {name}.\n\n\"Prove it,\" said Captain Mustard.\n\nJust then, the alarm rang. The Evil {job} was stealing every {object} in town! \"This is not a drill!\" cried the Captain. \"Go, go, go!\"\n\n{name} jumped onto the nearest {vehicle} and raced down the street. Everyone on the sidewalk looked up and shouted, \"{exclaim}\"\n\nSoon {name} spotted the Evil {job} running away with a sack full of {object} and laughing like a goose. It was time to use the big power.\n\n\"{power}!\" shouted {name}.\n\nIt went {noise}! Suddenly the {adj} Evil {job} tripped over a curb, dropped the sack, and rolled right into the town fountain.\n\nBut the sack was heavy. {name} had to {verb} all the way back to camp, with the cape flapping behind in the wind.\n\nCaptain Mustard was waiting at the gate. For a long time the {animal} said nothing.\n\nThen it pinned a shiny medal on the {color} cape. \"Not bad,\" it said. \"You can be on my team. But you have to {verb} with the team every morning.\"\n\n{name} was officially a superhero."
 }

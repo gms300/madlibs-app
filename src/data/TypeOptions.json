@@ -99,46 +99,100 @@
   ],
   "container": [
     {
-      "value": "bucket"
+      "value": "bucket",
+      "attributes": {
+        "article": "a"
+      }
     },
     {
-      "value": "pail"
+      "value": "pail",
+      "attributes": {
+        "article": "a"
+      }
     },
     {
-      "value": "jar"
+      "value": "jar",
+      "attributes": {
+        "article": "a"
+      }
     },
     {
-      "value": "bottle"
+      "value": "bottle",
+      "attributes": {
+        "article": "a"
+      }
     },
     {
-      "value": "basket"
+      "value": "basket",
+      "attributes": {
+        "article": "a"
+      }
     },
     {
-      "value": "box"
+      "value": "box",
+      "attributes": {
+        "article": "a"
+      }
     },
     {
-      "value": "trunk"
+      "value": "trunk",
+      "attributes": {
+        "article": "a"
+      }
     },
     {
-      "value": "bag"
+      "value": "bag",
+      "attributes": {
+        "article": "a"
+      }
     },
     {
-      "value": "suitcase"
+      "value": "suitcase",
+      "attributes": {
+        "article": "a"
+      }
     },
     {
-      "value": "chest"
+      "value": "chest",
+      "attributes": {
+        "article": "a"
+      }
     },
     {
-      "value": "garage can"
+      "value": "garage can",
+      "attributes": {
+        "article": "a"
+      }
     },
     {
-      "value": "lunchbox"
+      "value": "lunchbox",
+      "attributes": {
+        "article": "a"
+      }
     },
     {
-      "value": "backpack"
+      "value": "backpack",
+      "attributes": {
+        "article": "a"
+      }
     },
     {
-      "value": "cup"
+      "value": "cup",
+      "attributes": {
+        "article": "a"
+      }
+    },
+    {
+      "value": "envelope",
+      "attributes": {
+        "article": "an"
+      }
+    },
+    {
+      "value": "ice chest",
+      "attributes": {
+        "article": "an"
+      }
     }
   ],
   "substance": [
@@ -985,7 +1039,7 @@
       "value": "silver"
     }
   ],
-  "subject": [
+  "schoolSubject": [
     {
       "value": "math"
     },

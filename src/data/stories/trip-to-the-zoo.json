@@ -5,27 +5,27 @@
   "fields": [
     {
       "key": "name",
-      "prompt": "Choose a person's name.",
+      "prompt": "Pick a person's name.",
       "type": "personName"
     },
     {
       "key": "name2",
-      "type": "personName",
-      "prompt": "Choose another person's name."
+      "prompt": "Pick another person's name.",
+      "type": "personName"
     },
     {
       "key": "animal",
-      "prompt": "What's the name of an animal?",
+      "prompt": "Pick an animal.",
       "type": "animal"
     },
     {
       "key": "adjective",
-      "prompt": "What's an adjective?",
+      "prompt": "Pick a describing word.",
       "type": "adjective"
     },
     {
       "key": "verb",
-      "prompt": "What is an action word?",
+      "prompt": "Pick an action.",
       "type": "verb"
     }
   ],

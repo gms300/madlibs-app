@@ -3,17 +3,61 @@
   "title": "The Underwater Birthday Party",
   "description": "Celebrate a birthday at the bottom of the ocean",
   "fields": [
-    { "key": "name", "prompt": "What is the birthday kid's name?", "type": "personName" },
-    { "key": "number", "prompt": "How old is {name} turning?", "type": "number" },
-    { "key": "seacreature", "prompt": "What is a sea creature?", "type": "seaCreature" },
-    { "key": "food", "prompt": "What is a food?", "type": "food" },
-    { "key": "adjective", "prompt": "What is an adjective?", "type": "adjective" },
-    { "key": "verb", "prompt": "What is an action word?", "type": "verb" },
-    { "key": "noise", "prompt": "What is a silly noise?", "type": "noise" },
-    { "key": "thing", "prompt": "Choose a thing.", "type": "thing" },
-    { "key": "bodypart", "prompt": "What is a body part?", "type": "bodyPart" },
-    { "key": "gift", "prompt": "What is a birthday present?", "type": "gift" },
-    { "key": "exclaim", "prompt": "What would someone yell when they are excited?", "type": "exclamation" }
+    {
+      "key": "name",
+      "prompt": "Pick the birthday person's name.",
+      "type": "personName"
+    },
+    {
+      "key": "number",
+      "prompt": "How old is {name} turning?",
+      "type": "number"
+    },
+    {
+      "key": "seacreature",
+      "prompt": "Pick a sea creature.",
+      "type": "seaCreature"
+    },
+    {
+      "key": "food",
+      "prompt": "Pick a food.",
+      "type": "food"
+    },
+    {
+      "key": "adjective",
+      "prompt": "Pick a describing word.",
+      "type": "adjective"
+    },
+    {
+      "key": "verb",
+      "prompt": "Pick an action.",
+      "type": "verb"
+    },
+    {
+      "key": "noise",
+      "prompt": "Pick a noise.",
+      "type": "noise"
+    },
+    {
+      "key": "thing",
+      "prompt": "Pick a thing.",
+      "type": "thing"
+    },
+    {
+      "key": "bodyPart",
+      "prompt": "Pick a part of the body.",
+      "type": "bodyPart"
+    },
+    {
+      "key": "gift",
+      "prompt": "Pick a birthday present.",
+      "type": "gift"
+    },
+    {
+      "key": "exclaim",
+      "prompt": "Pick something someone would yell when they are excited.",
+      "type": "exclamation"
+    }
   ],
-  "template": "For {name}'s {number.ordinal} birthday, there was only one place to have the party: the bottom of the ocean!\n\nEveryone put on their {adjective} swim goggles and dove in. The first sea creature to arrive wore a party hat on its {bodypart}. \"Happy birthday!\" it blubbed. Bubbles went everywhere.\n\nThe cake was a giant tower of {food}, and the candles were lit by an electric eel who was very proud of his job. When {name} blew them out, the whole ocean shouted, \"{exclaim}\"\n\nThen came the games. First was Pin the Tail on the {seacreature}, which the {seacreature} did not enjoy at all. Next was a race, where everyone had to swim while {verb.ingTense}. A crab won, even though he was going sideways and also {verb.ingTense}.\n\nA band of dolphins played music on instruments made of seashells. Every time they hit a high note, it went {noise}, and a school of fish fainted from the sound.\n\nFinally, it was time for presents. {name} got a shiny {gift} from the {seacreature}, a thousand {thing.plural} from the crabs, and a hug from a very squishy sea star.\n\n\"This is the best birthday ever,\" said {name}.\n\nThen everyone sat in the sand, ate {food}, and floated home with full tummies, covered in glitter and happy bubbles."
+  "template": "For {name}'s {number.ordinal} birthday, there was only one place to have the party: the bottom of the ocean!\n\nEveryone put on their {adjective} swim goggles and dove in. The first sea creature to arrive wore a party hat on its {bodyPart}. \"Happy birthday!\" it blubbed. Bubbles went everywhere.\n\nThe cake was a giant tower of {food}, and the candles were lit by an electric eel who was very proud of his job. When {name} blew them out, the whole ocean shouted, \"{exclaim}\"\n\nThen came the games. First was Pin the Tail on the {seacreature}, which the {seacreature} did not enjoy at all. Next was a race, where everyone had to swim while {verb.ingTense}. A crab won, even though he was going sideways and also {verb.ingTense}.\n\nA band of dolphins played music on instruments made of seashells. Every time they hit a high note, it went {noise}, and a school of fish fainted from the sound.\n\nFinally, it was time for presents. {name} got a shiny {gift} from the {seacreature}, a thousand {thing.plural} from the crabs, and a hug from a very squishy sea star.\n\n\"This is the best birthday ever,\" said {name}.\n\nThen everyone sat in the sand, ate {food}, and floated home with full tummies, covered in glitter and happy bubbles."
 }

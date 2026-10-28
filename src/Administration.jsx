@@ -57,7 +57,10 @@ function renderStoryPreview(template, fields, types, sampleMode, sampleValues, a
           onFocus={onSelectorFocus}
           onBlur={onSelectorBlur}
         >
-          {options.map((option, optionIndex) => {
+          {options
+            .map((option, optionIndex) => ({ option, optionIndex }))
+            .sort((first, second) => first.option.value.localeCompare(second.option.value, undefined, { sensitivity: 'base' }))
+            .map(({ option, optionIndex }) => {
             const optionAttributeKey = attribute
               ? findCaseInsensitiveKey(option.attributes ?? {}, attribute)
               : undefined;
@@ -194,12 +197,22 @@ export default function Administration({ catalog, onSave, onClose }) {
     [fields[index], fields[nextIndex]] = [fields[nextIndex], fields[index]];
     update({ fields });
   };
+  const changeStoryMode = mode => {
+    if (mode === 'sample') {
+      setSampleValues(Object.fromEntries(draft.fields.map(field => {
+        const options = catalog.types[field.type] ?? [];
+        return [field.key, options.length ? Math.floor(Math.random() * options.length) : 0];
+      })));
+    }
+    setStoryMode(mode);
+  };
 
   const save = async event => {
     event.preventDefault();
     if (saving) return;
     let next;
     let key = selection.key;
+    let storyProblem = '';
     if (selection.kind === 'type') {
       const typeDraft = commitAttribute();
       if (!typeDraft) return;
@@ -218,8 +231,8 @@ export default function Administration({ catalog, onSave, onClose }) {
       }
       key = name;
     } else {
-      const problem = validateStory(draft, catalog.types);
-      if (problem) return setError(problem);
+      storyProblem = validateStory(draft, catalog.types);
+      if (storyProblem) setError(storyProblem);
       key = key ?? crypto.randomUUID();
       const story = { ...draft, id: key, title: draft.title.trim() };
       next = { ...catalog, stories: selection.key ? catalog.stories.map(item => item.id === key ? story : item) : [...catalog.stories, story] };
@@ -229,7 +242,7 @@ export default function Administration({ catalog, onSave, onClose }) {
       await onSave(next, { kind: selection.kind, key }, enteredCode);
       setSelection({ ...selection, key });
       setDirty(false);
-      setError('');
+      if (!storyProblem) setError('');
       setStatus('Saved to JSON file.');
     } catch (error) {
       setError(`Unable to save. ${error.message || 'Check the local server connection.'} Your changes have not been saved.`);
@@ -267,7 +280,7 @@ export default function Administration({ catalog, onSave, onClose }) {
           </nav>
         </aside>
         <main className="admin-editor">
-          {!selection ? <h2>Select a type or story</h2> : <form onSubmit={save}>
+          {!selection ? <h2>Select a type or story</h2> : <form noValidate onSubmit={save}>
             <fieldset className="admin-fields" disabled={saving}>
             <div className="admin-editor-heading"><h2>{selection.kind === 'type' ? 'Type settings' : 'Story settings'}</h2><button className="admin-primary" type="submit">{saving ? 'Saving...' : 'Save changes'}</button></div>
             {error && <p role="alert">{error}</p>}
@@ -289,50 +302,54 @@ export default function Administration({ catalog, onSave, onClose }) {
             </> : <>
               <label>Title<input value={draft.title} onChange={event => update({ title: event.target.value })} required /></label>
               <label>Description<input value={draft.description} onChange={event => update({ description: event.target.value })} /></label>
-              <div className="admin-section-heading"><h3>Fields</h3></div>
-              <div className="admin-table-scroll"><table><thead><tr><th scope="col">Key</th><th scope="col">Type</th><th scope="col">Prompt</th><th scope="col">Actions</th></tr></thead><tbody>{[...draft.fields, { key: '', type: '', prompt: '' }].map((field, index) => {
-                const isNew = index === draft.fields.length;
-                return <tr key={index}>
-                <td><input aria-label={`Field key ${index + 1}`} value={field.key} onChange={event => updateField(index, { key: event.target.value })} required={!isNew} /></td>
-                <td><select aria-label={`Field type ${index + 1}`} value={field.type} onChange={event => updateField(index, { type: event.target.value })} required={!isNew}><option value="">Choose a type</option>{Object.keys(catalog.types).sort((first, second) => first.localeCompare(second, undefined, { sensitivity: 'base' })).map(type => <option key={type}>{type}</option>)}</select></td>
-                <td><input aria-label={`Field prompt ${index + 1}`} value={field.prompt} onChange={event => updateField(index, { prompt: event.target.value })} required={!isNew} /></td>
-                <td className="admin-field-actions">{!isNew && <>
-                  <button type="button" className="admin-icon-button" aria-label={`Move field ${index + 1} up`} title="Move field up" disabled={index === 0} onClick={() => moveField(index, -1)}><ChevronUp size={18} aria-hidden="true" /></button>
-                  <button type="button" className="admin-icon-button" aria-label={`Move field ${index + 1} down`} title="Move field down" disabled={index === draft.fields.length - 1} onClick={() => moveField(index, 1)}><ChevronDown size={18} aria-hidden="true" /></button>
-                  <button type="button" className="admin-icon-button" aria-label={`Remove field ${index + 1}`} title="Remove field" onClick={() => update({ fields: draft.fields.filter((_, row) => row !== index) })}><Trash2 size={18} aria-hidden="true" /></button>
-                </>}</td>
-              </tr>;
-              })}</tbody></table></div>
-              <div className="admin-story-heading">
-                <span className="admin-story-label">Story</span>
-                <div className="admin-story-modes" role="group" aria-label="Story mode">
-                  {[
-                    ['view', 'View Mode'],
-                    ['sample', 'Sample Mode'],
-                    ['edit', 'Edit Mode']
-                  ].map(([mode, label]) => (
-                    <button key={mode} type="button" aria-pressed={storyMode === mode} onClick={() => setStoryMode(mode)}>{label}</button>
-                  ))}
+              <details className="admin-settings-section" open>
+                <summary><span className="admin-section-title" role="heading" aria-level="3">Story</span></summary>
+                <div className="admin-story-content">
+                  <div className="admin-story-modes" role="group" aria-label="Story mode">
+                    {[
+                      ['view', 'View Mode'],
+                      ['sample', 'Sample Mode'],
+                      ['edit', 'Edit Mode']
+                    ].map(([mode, label]) => (
+                        <button key={mode} type="button" aria-pressed={storyMode === mode} onClick={() => changeStoryMode(mode)}>{label}</button>
+                    ))}
+                  </div>
+                  {storyMode === 'edit'
+                    ? <textarea id="admin-story-template" aria-label="Story" rows={14} value={draft.template} onChange={event => update({ template: event.target.value })} required />
+                    : <div className="admin-story-preview" role="region" aria-label="Story">
+                      {renderStoryPreview(
+                        draft.template,
+                        draft.fields,
+                        catalog.types,
+                        storyMode === 'sample',
+                        sampleValues,
+                        storyMode === 'sample' ? activeSampleVariable : null,
+                        showSampleSelector,
+                        keepSampleSelector,
+                        hideSampleSelector,
+                        focusSampleSelector,
+                        blurSampleSelector,
+                        (key, index) => setSampleValues(previous => ({ ...previous, [key]: index }))
+                      )}
+                    </div>}
                 </div>
-              </div>
-              {storyMode === 'edit'
-                ? <textarea id="admin-story-template" aria-label="Story" rows={14} value={draft.template} onChange={event => update({ template: event.target.value })} required />
-                : <div className="admin-story-preview" role="region" aria-label="Story">
-                  {renderStoryPreview(
-                    draft.template,
-                    draft.fields,
-                    catalog.types,
-                    storyMode === 'sample',
-                    sampleValues,
-                    storyMode === 'sample' ? activeSampleVariable : null,
-                    showSampleSelector,
-                    keepSampleSelector,
-                    hideSampleSelector,
-                    focusSampleSelector,
-                    blurSampleSelector,
-                    (key, index) => setSampleValues(previous => ({ ...previous, [key]: index }))
-                  )}
-                </div>}
+              </details>
+              <details className="admin-settings-section" open>
+                <summary><span className="admin-section-title" role="heading" aria-level="3">Fields</span></summary>
+                <div className="admin-table-scroll"><table><thead><tr><th scope="col">Key</th><th scope="col">Type</th><th scope="col">Prompt</th><th scope="col">Actions</th></tr></thead><tbody>{[...draft.fields, { key: '', type: '', prompt: '' }].map((field, index) => {
+                  const isNew = index === draft.fields.length;
+                  return <tr key={index}>
+                  <td><input aria-label={`Field key ${index + 1}`} value={field.key} onChange={event => updateField(index, { key: event.target.value })} required={!isNew} /></td>
+                  <td><select aria-label={`Field type ${index + 1}`} value={field.type} onChange={event => updateField(index, { type: event.target.value })} required={!isNew}><option value="">Choose a type</option>{Object.keys(catalog.types).sort((first, second) => first.localeCompare(second, undefined, { sensitivity: 'base' })).map(type => <option key={type}>{type}</option>)}</select></td>
+                  <td><input aria-label={`Field prompt ${index + 1}`} value={field.prompt} onChange={event => updateField(index, { prompt: event.target.value })} required={!isNew} /></td>
+                  <td className="admin-field-actions">{!isNew && <>
+                    <button type="button" className="admin-icon-button" aria-label={`Move field ${index + 1} up`} title="Move field up" disabled={index === 0} onClick={() => moveField(index, -1)}><ChevronUp size={18} aria-hidden="true" /></button>
+                    <button type="button" className="admin-icon-button" aria-label={`Move field ${index + 1} down`} title="Move field down" disabled={index === draft.fields.length - 1} onClick={() => moveField(index, 1)}><ChevronDown size={18} aria-hidden="true" /></button>
+                    <button type="button" className="admin-icon-button" aria-label={`Remove field ${index + 1}`} title="Remove field" onClick={() => update({ fields: draft.fields.filter((_, row) => row !== index) })}><Trash2 size={18} aria-hidden="true" /></button>
+                  </>}</td>
+                </tr>;
+                })}</tbody></table></div>
+              </details>
             </>}
             </fieldset>
           </form>}

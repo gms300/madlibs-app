@@ -5,12 +5,12 @@
   "fields": [
     {
       "key": "name1",
-      "prompt": "Pick a name.",
+      "prompt": "Pick a person's name.",
       "type": "personName"
     },
     {
       "key": "name2",
-      "prompt": "Pick another name.",
+      "prompt": "Pick another person's name.",
       "type": "personName"
     },
     {
@@ -20,7 +20,7 @@
     },
     {
       "key": "object",
-      "prompt": "Pick an object.",
+      "prompt": "Pick a thing.",
       "type": "thing"
     },
     {
@@ -40,7 +40,7 @@
     },
     {
       "key": "thing",
-      "prompt": "Pick another object.",
+      "prompt": "Pick another thing.",
       "type": "thing"
     },
     {
@@ -55,7 +55,7 @@
     },
     {
       "key": "verb",
-      "prompt": "Pick an action word.",
+      "prompt": "Pick an action.",
       "type": "verb"
     }
   ],

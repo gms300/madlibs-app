@@ -41,6 +41,7 @@
 .admin-sidebar { padding: 20px 14px; border-right: 1px solid var(--admin-border); background: #eef0f5; }
 .admin-add-actions { display: flex; gap: 8px; margin-bottom: 24px; }
 .admin-sidebar details { margin-bottom: 18px; }
+.admin-shell summary { width: fit-content; }
 .admin-sidebar summary { font-weight: 700; cursor: pointer; padding: 8px 4px; }
 .admin-sidebar summary span { font-weight: 400; color: #606978; margin-left: 6px; font-size: 13px; }
 .admin-sidebar ul { list-style: none; padding: 0 0 0 12px; margin: 4px 0; border-left: 1px solid var(--admin-border); }
@@ -52,6 +53,9 @@
 .admin-editor-heading, .admin-section-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 .admin-editor h2 { font-size: 24px; margin: 0; }
 .admin-editor h3 { font-size: 18px; margin: 24px 0 16px; }
+.admin-settings-section { margin-top: 24px; border-top: 1px solid var(--admin-border); }
+.admin-settings-section > summary { cursor: pointer; padding: 14px 0; }
+.admin-section-title { font-size: 18px; font-weight: 700; }
 .admin-shell label, .admin-login label { display: grid; gap: 7px; margin: 16px 0; font-size: 14px; font-weight: 600; }
 .admin-shell input, .admin-shell select, .admin-shell textarea, .admin-login input { width: 100%; min-width: 0; border: 1px solid #bfc6d2; border-radius: 5px; padding: 10px; font: inherit; font-weight: 400; color: #292d36; background: white; }
 .admin-shell input[readonly] { background: #e9ecf2; }
@@ -68,8 +72,7 @@
 .admin-shell .admin-field-actions .admin-icon-button + .admin-icon-button { margin-left: 4px; }
 .admin-shell .admin-field-actions button:disabled { cursor: not-allowed; }
 .admin-shell .admin-icon-button { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; width: 36px; height: 36px; padding: 0; }
-.admin-story-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 28px; }
-.admin-shell .admin-story-label { margin: 0; font-size: 14px; font-weight: 600; }
+.admin-story-content { padding-bottom: 12px; }
 .admin-story-modes { display: flex; flex-wrap: wrap; gap: 6px; }
 .admin-shell .admin-story-modes button { padding: 7px 10px; }
 .admin-shell .admin-story-modes button[aria-pressed="true"] { color: white; background: var(--admin-accent); border-color: var(--admin-accent); }
