@@ -55,7 +55,7 @@
     },
     {
       "key": "animal",
-      "prompt": "What is an animal?",
+      "prompt": "Pick an animal?",
       "type": "animal"
     }
   ],

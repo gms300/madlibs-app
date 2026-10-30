@@ -4,7 +4,7 @@
   "description": "A fun adventure to the zoo",
   "fields": [
     {
-      "key": "name",
+      "key": "name1",
       "prompt": "Pick a person's name.",
       "type": "personName"
     },
@@ -27,7 +27,37 @@
       "key": "verb",
       "prompt": "Pick an action.",
       "type": "verb"
+    },
+    {
+      "key": "exclamation",
+      "type": "exclamation",
+      "prompt": "Pick something someone would yell when they are excited."
+    },
+    {
+      "key": "noise",
+      "type": "noise",
+      "prompt": "Pick a noise."
+    },
+    {
+      "key": "place",
+      "type": "place",
+      "prompt": "Pick a place."
+    },
+    {
+      "key": "job",
+      "type": "job",
+      "prompt": "Pick a job,"
+    },
+    {
+      "key": "food",
+      "type": "food",
+      "prompt": "Pick a food."
+    },
+    {
+      "key": "thing",
+      "type": "thing",
+      "prompt": "Pick a thing."
     }
   ],
-  "template": "{name} took a trip to the zoo.  {name.pronoun | capitalizeFirst} saw many animals and had a great time.  There was {adjective.article} {adjective} {animal}.\n\nThe {animal} was named {name2}.  {name2} was {verb.ingTense}."
+  "template": "{name1} and {name2} took a trip to the zoo. They saw many animals and had\na great time.\n\nFirst, they visited the {adjective} {animal}. The {animal} was named\n{name2}, and {name2} was {verb.ingTense} all over the enclosure. \"{exclamation}!\"\nshouted {name1}. \"Look at {name2} go!\"\n\nNext they heard a loud {noise} from {place}. The {job} was chasing a runaway\ncart full of {food}. \"{exclamation}!\" yelled the {job}. \"My {food} is escaping!\"\n\n{name1} and {name2} helped catch the cart. As a thank-you, the {job} gave\nthem one {thing} to take home and let them feed the {animal} some {food}.\n{name2} the {animal} gobbled up the {food} and started {verb} again,\nhappier than ever.\n\nOn the way home, {name1} said, \"That was the best zoo trip ever.\" And\n{name2} agreed: \"{exclamation}!\""
 }
